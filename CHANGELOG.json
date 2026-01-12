@@ -1,0 +1,37 @@
+{
+  "ir_version": "1.0",
+  "project": "aiassistkit",
+  "repository": "https://github.com/grokify/aiassistkit",
+  "versioning": "semver",
+  "commit_convention": "conventional",
+  "maintainers": ["grokify"],
+  "releases": [
+    {
+      "version": "v0.1.0",
+      "date": "2026-01-12",
+      "highlights": [
+        { "description": "Initial release with unified configuration management for AI coding assistants supporting 9 tools" }
+      ],
+      "added": [
+        { "description": "`mcp` package with adapters for MCP server configurations (Claude, Cursor, Windsurf, VS Code, Codex, Cline, Roo, Kiro)" },
+        { "description": "`context` package with converter for generating CLAUDE.md from CONTEXT.json" },
+        { "description": "`agents` package with adapters for AI assistant agent definitions (Claude, Codex, Gemini, Kiro)" },
+        { "description": "`commands` package with adapters for slash command definitions (Claude, Codex, Gemini)" },
+        { "description": "`plugins` package with adapters for plugin/extension configurations (Claude, Gemini)" },
+        { "description": "`skills` package with adapters for reusable skill definitions (Claude, Codex)" },
+        { "description": "`teams` package for multi-agent team orchestration with process types (sequential, parallel, hierarchical)" },
+        { "description": "`validation` package with configuration validators (Claude, Codex, Gemini)" },
+        { "description": "Adapter pattern with canonical types and tool-specific converters" },
+        { "description": "Self-registering adapters via `init()` for automatic discovery" },
+        { "description": "JSON Schema validation for plugins, commands, skills, agents, teams, and validation configs" }
+      ],
+      "documentation": [
+        { "description": "PRD.md product requirements document" },
+        { "description": "TRD.md technical requirements document" },
+        { "description": "ROADMAP.md and ROADMAP.json for project planning" },
+        { "description": "README.md with installation and usage examples" },
+        { "description": "PRESENTATION.md Marp slides for project overview" }
+      ]
+    }
+  ]
+}

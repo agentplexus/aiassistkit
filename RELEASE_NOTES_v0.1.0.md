@@ -1,0 +1,122 @@
+# Release Notes: v0.1.0
+
+**Release Date:** 2026-01-12
+
+## Highlights
+
+Initial release with unified configuration management for AI coding assistants, supporting 9 tools across 8 configuration packages.
+
+## What's New
+
+### MCP Package
+
+Model Context Protocol (MCP) server configuration adapters for 8 tools:
+
+- **Claude Code / Claude Desktop**: `.mcp.json`
+- **Cursor IDE**: `~/.cursor/mcp.json`
+- **Windsurf (Codeium)**: `~/.codeium/windsurf/mcp_config.json`
+- **VS Code / GitHub Copilot**: `.vscode/mcp.json`
+- **OpenAI Codex CLI**: `~/.codex/config.toml` (TOML format)
+- **Cline**: VS Code extension `cline_mcp_settings.json`
+- **Roo Code**: VS Code extension `mcp_settings.json`
+- **AWS Kiro CLI**: `.kiro/settings/mcp.json`
+
+### Context Package
+
+Project context management with CLAUDE.md generation:
+
+- Canonical Context, Architecture, Package types
+- CONTEXT.json to CLAUDE.md converter
+
+### Plugins Package
+
+Plugin/extension manifest definitions:
+
+- Claude Code: `.claude-plugin/plugin.json`
+- Google Gemini CLI: `gemini-extension.json`
+
+### Commands Package
+
+Slash command/prompt definitions:
+
+- Claude Code: `commands/*.md` (Markdown + YAML frontmatter)
+- Google Gemini CLI: `commands/*.toml` (TOML format)
+- OpenAI Codex CLI: `prompts/*.md` (Markdown + YAML)
+
+### Skills Package
+
+Reusable skill definitions:
+
+- Claude Code: `skills/*/SKILL.md`
+- OpenAI Codex CLI: `skills/*/SKILL.md`
+
+### Agents Package
+
+AI assistant agent definitions:
+
+- Claude Code: `agents/*.md` (Markdown + YAML frontmatter)
+- OpenAI Codex CLI: Agent definitions
+- Google Gemini CLI: Agent definitions
+- AWS Kiro CLI: `~/.kiro/agents/*.json`
+
+### Teams Package
+
+Multi-agent team orchestration:
+
+- Team, Task, Subtask types
+- Process types: Sequential, Parallel, Hierarchical
+- Status types: Go, NoGo, Warn, Skip, Pending, Running
+
+### Validation Package
+
+Configuration validators:
+
+- Claude Code adapter
+- OpenAI Codex CLI adapter
+- Google Gemini CLI adapter
+
+## Architecture
+
+- **Adapter Pattern**: Canonical types with tool-specific converters
+- **Self-Registering Adapters**: Auto-discovery via `init()` functions
+- **JSON Schema Validation**: Schema files for all configuration types
+- **Minimal Dependencies**: Only `go-toml/v2` and `yaml.v3`
+
+## Documentation
+
+- PRD.md - Product Requirements Document
+- TRD.md - Technical Requirements Document
+- ROADMAP.md / ROADMAP.json - Project roadmap
+- README.md - Installation and usage examples
+- PRESENTATION.md - Marp slides for project overview
+
+## Installation
+
+```bash
+go get github.com/grokify/aiassistkit@v0.1.0
+```
+
+## Quick Start
+
+```go
+import (
+    "github.com/grokify/aiassistkit/mcp"
+    "github.com/grokify/aiassistkit/mcp/claude"
+    "github.com/grokify/aiassistkit/mcp/vscode"
+)
+
+// Read Claude MCP config
+cfg, _ := claude.ReadProjectConfig()
+
+// Convert to VS Code format
+vscode.WriteWorkspaceConfig(cfg)
+```
+
+## Related Projects
+
+AI Assist Kit is part of the AgentPlexus family of Go modules:
+
+- **OmniVault** - Unified secrets management
+- **OmniLLM** - Multi-provider LLM abstraction
+- **OmniSerp** - Search engine abstraction
+- **OmniObserve** - LLM observability abstraction
