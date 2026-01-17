@@ -13,17 +13,21 @@
         { "description": "Migration to agentplexus organization with hooks package for AI assistant lifecycle events" }
       ],
       "added": [
-        { "description": "`hooks` package with adapters for AI assistant lifecycle hooks (Claude, Cursor, Windsurf)" },
-        { "description": "`hooks/core` with canonical hook types, events, and adapter interface" },
-        { "description": "`hooks/claude` adapter for Claude Code hooks (PreToolUse, PostToolUse, etc.)" },
-        { "description": "`hooks/cursor` adapter for Cursor IDE hooks" },
-        { "description": "`hooks/windsurf` adapter for Windsurf hooks" }
+        { "description": "`hooks` package with adapters for AI assistant lifecycle hooks (Claude, Cursor, Windsurf)", "commit": "e7155b9" },
+        { "description": "`hooks/core` with canonical hook types, events, and adapter interface", "commit": "e7155b9" },
+        { "description": "`hooks/claude` adapter for Claude Code hooks (PreToolUse, PostToolUse, etc.)", "commit": "e7155b9" },
+        { "description": "`hooks/cursor` adapter for Cursor IDE hooks", "commit": "e7155b9" },
+        { "description": "`hooks/windsurf` adapter for Windsurf hooks", "commit": "e7155b9" }
       ],
       "changed": [
-        { "description": "Module path changed from `github.com/grokify/aiassistkit` to `github.com/agentplexus/aiassistkit`" }
+        { "description": "Module path changed from `github.com/grokify/aiassistkit` to `github.com/agentplexus/aiassistkit`", "commit": "35abed5" }
+      ],
+      "documentation": [
+        { "description": "Updated documentation for agentplexus migration", "commit": "f02d4da" },
+        { "description": "Added v0.4.0 release notes", "commit": "f02d4da" }
       ],
       "dependencies": [
-        { "description": "Added `github.com/agentplexus/multi-agent-spec/sdk/go` for multi-agent specifications" }
+        { "description": "Added `github.com/agentplexus/multi-agent-spec/sdk/go` for multi-agent specifications", "commit": "9a7c9c7" }
       ]
     },
     {
