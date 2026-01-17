@@ -9,7 +9,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/grokify/aiassistkit/agents/core"
+	multiagentspec "github.com/agentplexus/multi-agent-spec/sdk/go"
+
+	"github.com/agentplexus/aiassistkit/agents/core"
 )
 
 func init() {
@@ -127,24 +129,25 @@ type TimeoutConfig struct {
 	ParallelTotal string `json:"parallel_total"`
 }
 
-// Tool mapping from canonical to agentkit local tools.
-var toolMapping = map[string]string{
-	"WebSearch": "shell", // Implemented via shell command
-	"WebFetch":  "shell", // Implemented via shell command (curl)
-	"Read":      "read",
-	"Write":     "write",
-	"Glob":      "glob",
-	"Grep":      "grep",
-	"Bash":      "shell",
-	"Edit":      "write", // Edit maps to write
-	"Task":      "shell", // Task spawning via shell
-}
-
-// Model mapping from canonical to agentkit models.
-var modelMapping = map[string]string{
+// agentKitModelMapping maps canonical models to agentkit local model strings.
+// AgentKit uses full model strings rather than Bedrock ARNs.
+var agentKitModelMapping = map[string]string{
 	"haiku":  "claude-3-haiku-20240307",
 	"sonnet": "claude-3-5-sonnet-20241022",
 	"opus":   "claude-3-opus-20240229",
+}
+
+// mapToolToAgentKit converts a canonical tool string to AgentKit tool using multi-agent-spec.
+func mapToolToAgentKit(tool string) string {
+	return multiagentspec.MapToolToAgentKit(multiagentspec.Tool(tool))
+}
+
+// mapModelToAgentKit converts a canonical model string to AgentKit model string.
+func mapModelToAgentKit(model string) string {
+	if mapped, ok := agentKitModelMapping[model]; ok {
+		return mapped
+	}
+	return model
 }
 
 func agentToConfig(agent *core.Agent) *AgentConfig {
@@ -154,10 +157,11 @@ func agentToConfig(agent *core.Agent) *AgentConfig {
 		Instructions: agent.Instructions,
 	}
 
-	// Map tools
+	// Map tools using multi-agent-spec mappings
 	toolSet := make(map[string]bool)
 	for _, tool := range agent.Tools {
-		if mapped, ok := toolMapping[tool]; ok {
+		mapped := mapToolToAgentKit(tool)
+		if mapped != "" {
 			toolSet[mapped] = true
 		} else {
 			// Keep unknown tools as-is (lowercase)
@@ -169,13 +173,21 @@ func agentToConfig(agent *core.Agent) *AgentConfig {
 	}
 
 	// Map model
-	if model, ok := modelMapping[agent.Model]; ok {
-		cfg.Model = model
-	} else if agent.Model != "" {
-		cfg.Model = agent.Model
+	if agent.Model != "" {
+		cfg.Model = mapModelToAgentKit(agent.Model)
 	}
 
 	return cfg
+}
+
+// reverseAgentKitToolMapping provides reverse mapping from AgentKit tools to canonical.
+// Note: Some AgentKit tools map to multiple canonical tools, so we pick a representative.
+var reverseAgentKitToolMapping = map[string]string{
+	"shell": "Bash", // shell could be WebSearch, WebFetch, Bash, or Task - default to Bash
+	"read":  "Read",
+	"write": "Write", // write could be Write or Edit - default to Write
+	"glob":  "Glob",
+	"grep":  "Grep",
 }
 
 func configToAgent(cfg *AgentConfig) *core.Agent {
@@ -187,13 +199,8 @@ func configToAgent(cfg *AgentConfig) *core.Agent {
 	}
 
 	// Reverse map tools
-	reverseToolMapping := make(map[string]string)
-	for k, v := range toolMapping {
-		reverseToolMapping[v] = k
-	}
-
 	for _, tool := range cfg.Tools {
-		if mapped, ok := reverseToolMapping[tool]; ok {
+		if mapped, ok := reverseAgentKitToolMapping[tool]; ok {
 			agent.Tools = append(agent.Tools, mapped)
 		} else {
 			agent.Tools = append(agent.Tools, tool)

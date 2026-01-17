@@ -12,8 +12,8 @@
 //	    "fmt"
 //	    "os"
 //
-//	    "github.com/grokify/aiassistkit/publish"
-//	    "github.com/grokify/aiassistkit/publish/claude"
+//	    "github.com/agentplexus/aiassistkit/publish"
+//	    "github.com/agentplexus/aiassistkit/publish/claude"
 //	)
 //
 //	func main() {
@@ -33,10 +33,10 @@
 package publish
 
 import (
-	"github.com/grokify/aiassistkit/publish/core"
+	"github.com/agentplexus/aiassistkit/publish/core"
 
 	// Import publishers for side-effect registration
-	_ "github.com/grokify/aiassistkit/publish/claude"
+	_ "github.com/agentplexus/aiassistkit/publish/claude"
 )
 
 // Re-export core types for convenience.

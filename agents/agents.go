@@ -9,7 +9,7 @@
 //	package main
 //
 //	import (
-//	    "github.com/grokify/aiassistkit/agents"
+//	    "github.com/agentplexus/aiassistkit/agents"
 //	)
 //
 //	func main() {
@@ -31,13 +31,15 @@
 package agents
 
 import (
-	"github.com/grokify/aiassistkit/agents/core"
+	"github.com/agentplexus/aiassistkit/agents/core"
 
 	// Import adapters for side-effect registration
-	_ "github.com/grokify/aiassistkit/agents/claude"
-	_ "github.com/grokify/aiassistkit/agents/codex"
-	_ "github.com/grokify/aiassistkit/agents/gemini"
-	_ "github.com/grokify/aiassistkit/agents/kiro"
+	_ "github.com/agentplexus/aiassistkit/agents/agentkit"
+	_ "github.com/agentplexus/aiassistkit/agents/awsagentcore"
+	_ "github.com/agentplexus/aiassistkit/agents/claude"
+	_ "github.com/agentplexus/aiassistkit/agents/codex"
+	_ "github.com/agentplexus/aiassistkit/agents/gemini"
+	_ "github.com/agentplexus/aiassistkit/agents/kiro"
 )
 
 // Re-export core types for convenience

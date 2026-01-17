@@ -20,14 +20,14 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/grokify/aiassistkit/agents"
-	"github.com/grokify/aiassistkit/agents/agentkit"
-	"github.com/grokify/aiassistkit/agents/awsagentcore"
-	"github.com/grokify/aiassistkit/agents/core"
+	"github.com/agentplexus/aiassistkit/agents"
+	"github.com/agentplexus/aiassistkit/agents/agentkit"
+	"github.com/agentplexus/aiassistkit/agents/awsagentcore"
+	"github.com/agentplexus/aiassistkit/agents/core"
 
 	// Import adapters to register them
-	_ "github.com/grokify/aiassistkit/agents/claude"
-	_ "github.com/grokify/aiassistkit/agents/kiro"
+	_ "github.com/agentplexus/aiassistkit/agents/claude"
+	_ "github.com/agentplexus/aiassistkit/agents/kiro"
 )
 
 func main() {

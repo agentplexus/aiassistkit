@@ -6,10 +6,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/grokify/aiassistkit/validation"
-	_ "github.com/grokify/aiassistkit/validation/claude" // Register Claude adapter
-	_ "github.com/grokify/aiassistkit/validation/codex"  // Register Codex adapter
-	_ "github.com/grokify/aiassistkit/validation/gemini" // Register Gemini adapter
+	"github.com/agentplexus/aiassistkit/validation"
+	_ "github.com/agentplexus/aiassistkit/validation/claude" // Register Claude adapter
+	_ "github.com/agentplexus/aiassistkit/validation/codex"  // Register Codex adapter
+	_ "github.com/agentplexus/aiassistkit/validation/gemini" // Register Gemini adapter
 )
 
 // testAreas returns sample validation areas for testing

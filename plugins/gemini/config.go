@@ -1,7 +1,7 @@
 package gemini
 
 import (
-	"github.com/grokify/aiassistkit/plugins/core"
+	"github.com/agentplexus/aiassistkit/plugins/core"
 )
 
 // GeminiExtension represents the Gemini CLI gemini-extension.json format.

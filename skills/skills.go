@@ -9,7 +9,7 @@
 //	package main
 //
 //	import (
-//	    "github.com/grokify/aiassistkit/skills"
+//	    "github.com/agentplexus/aiassistkit/skills"
 //	)
 //
 //	func main() {
@@ -31,11 +31,11 @@
 package skills
 
 import (
-	"github.com/grokify/aiassistkit/skills/core"
+	"github.com/agentplexus/aiassistkit/skills/core"
 
 	// Import adapters for side-effect registration
-	_ "github.com/grokify/aiassistkit/skills/claude"
-	_ "github.com/grokify/aiassistkit/skills/codex"
+	_ "github.com/agentplexus/aiassistkit/skills/claude"
+	_ "github.com/agentplexus/aiassistkit/skills/codex"
 )
 
 // Re-export core types for convenience

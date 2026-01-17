@@ -5,6 +5,7 @@
 // AI Assist Kit supports multiple configuration types:
 //
 //   - MCP (Model Context Protocol) server configurations
+//   - Hooks (automation/lifecycle callbacks)
 //   - Settings (permissions, sandbox, general settings) - coming soon
 //   - Rules (team rules, coding guidelines) - coming soon
 //   - Memory (CLAUDE.md, .cursorrules, etc.) - coming soon
@@ -17,9 +18,9 @@
 // Example usage:
 //
 //	import (
-//	    "github.com/grokify/aiassistkit/mcp"
-//	    "github.com/grokify/aiassistkit/mcp/claude"
-//	    "github.com/grokify/aiassistkit/mcp/vscode"
+//	    "github.com/agentplexus/aiassistkit/mcp"
+//	    "github.com/agentplexus/aiassistkit/mcp/claude"
+//	    "github.com/agentplexus/aiassistkit/mcp/vscode"
 //	)
 //
 //	// Read Claude config and write to VS Code format
@@ -28,6 +29,28 @@
 //
 //	// Or use dynamic conversion
 //	data, _ := mcp.Convert(jsonData, "claude", "vscode")
+//
+// # Hooks Configuration
+//
+// The hooks subpackage provides adapters for automation/lifecycle callbacks
+// that execute at defined stages of the agent loop.
+//
+// Example usage:
+//
+//	import (
+//	    "github.com/agentplexus/aiassistkit/hooks"
+//	    "github.com/agentplexus/aiassistkit/hooks/claude"
+//	)
+//
+//	// Create hooks configuration
+//	cfg := hooks.NewConfig()
+//	cfg.AddHook(hooks.BeforeCommand, hooks.NewCommandHook("echo 'before'"))
+//
+//	// Write to Claude format
+//	claude.WriteProjectConfig(cfg)
+//
+//	// Or convert between formats
+//	data, _ := hooks.Convert(jsonData, "claude", "cursor")
 //
 // # Related Projects
 //
@@ -49,6 +72,9 @@ const (
 	// ConfigTypeMCP represents MCP server configuration.
 	ConfigTypeMCP ConfigType = "mcp"
 
+	// ConfigTypeHooks represents hooks/automation configuration.
+	ConfigTypeHooks ConfigType = "hooks"
+
 	// ConfigTypeSettings represents general settings configuration.
 	ConfigTypeSettings ConfigType = "settings"
 
@@ -63,6 +89,7 @@ const (
 func SupportedConfigTypes() []ConfigType {
 	return []ConfigType{
 		ConfigTypeMCP,
+		ConfigTypeHooks,
 		ConfigTypeSettings,
 		ConfigTypeRules,
 		ConfigTypeMemory,

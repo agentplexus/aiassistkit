@@ -32,17 +32,17 @@
 package mcp
 
 import (
-	"github.com/grokify/aiassistkit/mcp/core"
+	"github.com/agentplexus/aiassistkit/mcp/core"
 
 	// Import adapters to register them
-	_ "github.com/grokify/aiassistkit/mcp/claude"
-	_ "github.com/grokify/aiassistkit/mcp/cline"
-	_ "github.com/grokify/aiassistkit/mcp/codex"
-	_ "github.com/grokify/aiassistkit/mcp/cursor"
-	_ "github.com/grokify/aiassistkit/mcp/kiro"
-	_ "github.com/grokify/aiassistkit/mcp/roo"
-	_ "github.com/grokify/aiassistkit/mcp/vscode"
-	_ "github.com/grokify/aiassistkit/mcp/windsurf"
+	_ "github.com/agentplexus/aiassistkit/mcp/claude"
+	_ "github.com/agentplexus/aiassistkit/mcp/cline"
+	_ "github.com/agentplexus/aiassistkit/mcp/codex"
+	_ "github.com/agentplexus/aiassistkit/mcp/cursor"
+	_ "github.com/agentplexus/aiassistkit/mcp/kiro"
+	_ "github.com/agentplexus/aiassistkit/mcp/roo"
+	_ "github.com/agentplexus/aiassistkit/mcp/vscode"
+	_ "github.com/agentplexus/aiassistkit/mcp/windsurf"
 )
 
 // Re-export core types for convenience

@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/grokify/aiassistkit/context/core"
+	"github.com/agentplexus/aiassistkit/context/core"
 )
 
 func TestNewConverter(t *testing.T) {

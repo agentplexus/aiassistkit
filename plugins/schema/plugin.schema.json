@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/grokify/aiassistkit/plugins/schema/plugin.schema.json",
+  "$id": "https://github.com/agentplexus/aiassistkit/plugins/schema/plugin.schema.json",
   "title": "AI Assist Kit Plugin",
   "description": "Canonical plugin/extension definition for AI coding assistants",
   "type": "object",
@@ -58,6 +58,10 @@
     "agents": {
       "type": "string",
       "description": "Path to directory containing agent spec files"
+    },
+    "hooks": {
+      "type": "string",
+      "description": "Path to hooks configuration file"
     },
     "context": {
       "type": "string",
@@ -126,6 +130,7 @@
       "commands": "commands",
       "skills": "skills",
       "agents": "agents",
+      "hooks": "hooks/hooks.json",
       "dependencies": [
         {"name": "git", "command": "git"},
         {"name": "gh", "command": "gh"},

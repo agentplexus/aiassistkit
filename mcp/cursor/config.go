@@ -1,6 +1,6 @@
 package cursor
 
-import "github.com/grokify/aiassistkit/mcp/claude"
+import "github.com/agentplexus/aiassistkit/mcp/claude"
 
 // Config is an alias for Claude's config since the format is identical.
 type Config = claude.Config

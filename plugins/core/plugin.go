@@ -17,6 +17,7 @@ type Plugin struct {
 	Commands string `json:"commands,omitempty"` // Directory containing command specs
 	Skills   string `json:"skills,omitempty"`   // Directory containing skill specs
 	Agents   string `json:"agents,omitempty"`   // Directory containing agent specs
+	Hooks    string `json:"hooks,omitempty"`    // Path to hooks spec file
 
 	// Context file content
 	Context string `json:"context,omitempty"` // System prompt / context content

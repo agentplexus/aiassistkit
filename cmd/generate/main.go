@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/grokify/aiassistkit/context"
-	_ "github.com/grokify/aiassistkit/context/claude"
+	"github.com/agentplexus/aiassistkit/context"
+	_ "github.com/agentplexus/aiassistkit/context/claude"
 )
 
 func main() {

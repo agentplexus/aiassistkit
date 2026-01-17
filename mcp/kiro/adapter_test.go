@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/grokify/aiassistkit/mcp/core"
+	"github.com/agentplexus/aiassistkit/mcp/core"
 )
 
 func TestNewAdapter(t *testing.T) {

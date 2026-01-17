@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/grokify/aiassistkit/validation/core"
+	"github.com/agentplexus/aiassistkit/validation/core"
 )
 
 func init() {

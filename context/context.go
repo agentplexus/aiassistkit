@@ -9,7 +9,7 @@
 // Create a CONTEXT.json file in your project root:
 //
 //	{
-//	  "$schema": "https://github.com/grokify/aiassistkit/context/schema/project-context.schema.json",
+//	  "$schema": "https://github.com/agentplexus/aiassistkit/context/schema/project-context.schema.json",
 //	  "name": "my-project",
 //	  "description": "A brief description",
 //	  "language": "go",
@@ -22,8 +22,8 @@
 // Then convert to tool-specific formats:
 //
 //	import (
-//	    "github.com/grokify/aiassistkit/context"
-//	    _ "github.com/grokify/aiassistkit/context/claude" // Register converter
+//	    "github.com/agentplexus/aiassistkit/context"
+//	    _ "github.com/agentplexus/aiassistkit/context/claude" // Register converter
 //	)
 //
 //	ctx, _ := context.ReadFile("CONTEXT.json")
@@ -37,7 +37,7 @@
 package context
 
 import (
-	"github.com/grokify/aiassistkit/context/core"
+	"github.com/agentplexus/aiassistkit/context/core"
 )
 
 // Re-export core types for convenience.

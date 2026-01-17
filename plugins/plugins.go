@@ -9,8 +9,8 @@
 //	package main
 //
 //	import (
-//	    "github.com/grokify/aiassistkit/plugins"
-//	    "github.com/grokify/aiassistkit/plugins/core"
+//	    "github.com/agentplexus/aiassistkit/plugins"
+//	    "github.com/agentplexus/aiassistkit/plugins/core"
 //	)
 //
 //	func main() {
@@ -31,11 +31,11 @@
 package plugins
 
 import (
-	"github.com/grokify/aiassistkit/plugins/core"
+	"github.com/agentplexus/aiassistkit/plugins/core"
 
 	// Import adapters for side-effect registration
-	_ "github.com/grokify/aiassistkit/plugins/claude"
-	_ "github.com/grokify/aiassistkit/plugins/gemini"
+	_ "github.com/agentplexus/aiassistkit/plugins/claude"
+	_ "github.com/agentplexus/aiassistkit/plugins/gemini"
 )
 
 // Re-export core types for convenience

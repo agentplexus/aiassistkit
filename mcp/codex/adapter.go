@@ -13,7 +13,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/grokify/aiassistkit/mcp/core"
+	"github.com/agentplexus/aiassistkit/mcp/core"
 	"github.com/pelletier/go-toml/v2"
 )
 

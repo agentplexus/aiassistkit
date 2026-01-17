@@ -11,7 +11,9 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/grokify/aiassistkit/agents/core"
+	multiagentspec "github.com/agentplexus/multi-agent-spec/sdk/go"
+
+	"github.com/agentplexus/aiassistkit/agents/core"
 )
 
 func init() {
@@ -88,12 +90,7 @@ func DefaultAgentCoreConfig() *AgentCoreConfig {
 	}
 }
 
-// Model mapping from canonical to Bedrock foundation models.
-var bedrockModelMapping = map[string]string{
-	"haiku":  "anthropic.claude-3-haiku-20240307-v1:0",
-	"sonnet": "anthropic.claude-3-5-sonnet-20241022-v2:0",
-	"opus":   "anthropic.claude-3-opus-20240229-v1:0",
-}
+// Model mapping is delegated to multi-agent-spec BedrockModels.
 
 // Tool to Lambda action mapping.
 var toolToAction = map[string]string{
@@ -166,10 +163,13 @@ func escapeString(s string) string {
 }
 
 func getFoundationModel(model string) string {
-	if mapped, ok := bedrockModelMapping[model]; ok {
-		return mapped
+	// Use multi-agent-spec mapping for Bedrock models
+	mapped := multiagentspec.MapModelToBedrock(multiagentspec.Model(model))
+	if mapped == model {
+		// Fallback to sonnet if unknown model
+		return multiagentspec.MapModelToBedrock(multiagentspec.ModelSonnet)
 	}
-	return bedrockModelMapping["sonnet"]
+	return mapped
 }
 
 func getActions(tools []string) []string {

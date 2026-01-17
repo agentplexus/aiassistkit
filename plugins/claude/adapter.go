@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/grokify/aiassistkit/plugins/core"
+	"github.com/agentplexus/aiassistkit/plugins/core"
 )
 
 func init() {
@@ -117,6 +117,13 @@ func (a *Adapter) WritePlugin(plugin *core.Plugin, dir string) error {
 		agentsDir := filepath.Join(dir, "agents")
 		if err := os.MkdirAll(agentsDir, core.DefaultDirMode); err != nil {
 			return &core.WriteError{Path: agentsDir, Err: err}
+		}
+	}
+
+	if plugin.Hooks != "" {
+		hooksDir := filepath.Join(dir, "hooks")
+		if err := os.MkdirAll(hooksDir, core.DefaultDirMode); err != nil {
+			return &core.WriteError{Path: hooksDir, Err: err}
 		}
 	}
 

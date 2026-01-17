@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/grokify/aiassistkit/context/core"
+	"github.com/agentplexus/aiassistkit/context/core"
 )
 
 const (

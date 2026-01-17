@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/grokify/aiassistkit/commands/core"
+	"github.com/agentplexus/aiassistkit/commands/core"
 )
 
 func init() {

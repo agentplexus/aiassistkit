@@ -12,8 +12,8 @@
 // Example usage:
 //
 //	import (
-//	    "github.com/grokify/aiassistkit/validation"
-//	    _ "github.com/grokify/aiassistkit/validation/claude" // Register Claude adapter
+//	    "github.com/agentplexus/aiassistkit/validation"
+//	    _ "github.com/agentplexus/aiassistkit/validation/claude" // Register Claude adapter
 //	)
 //
 //	// Read canonical validation area
@@ -28,7 +28,7 @@
 package validation
 
 import (
-	"github.com/grokify/aiassistkit/validation/core"
+	"github.com/agentplexus/aiassistkit/validation/core"
 )
 
 // ValidationArea is the canonical validation area type.

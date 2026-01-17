@@ -1,7 +1,7 @@
 package claude
 
 import (
-	"github.com/grokify/aiassistkit/plugins/core"
+	"github.com/agentplexus/aiassistkit/plugins/core"
 )
 
 // ClaudePlugin represents the Claude Code plugin.json format.
@@ -21,6 +21,7 @@ type ClaudePlugin struct {
 	Commands string `json:"commands,omitempty"` // e.g., "./commands/"
 	Skills   string `json:"skills,omitempty"`   // e.g., "./skills/"
 	Agents   string `json:"agents,omitempty"`   // e.g., "./agents/"
+	Hooks    string `json:"hooks,omitempty"`    // e.g., "./hooks/hooks.json"
 }
 
 // ToCanonical converts ClaudePlugin to canonical Plugin.
@@ -36,6 +37,7 @@ func (cp *ClaudePlugin) ToCanonical() *core.Plugin {
 		Commands:    cp.Commands,
 		Skills:      cp.Skills,
 		Agents:      cp.Agents,
+		Hooks:       cp.Hooks,
 	}
 }
 
@@ -60,6 +62,9 @@ func FromCanonical(p *core.Plugin) *ClaudePlugin {
 	}
 	if p.Agents != "" {
 		cp.Agents = "./agents/"
+	}
+	if p.Hooks != "" {
+		cp.Hooks = "./hooks/hooks.json"
 	}
 
 	return cp

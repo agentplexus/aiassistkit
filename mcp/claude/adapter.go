@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/grokify/aiassistkit/mcp/core"
+	"github.com/agentplexus/aiassistkit/mcp/core"
 )
 
 const (

@@ -10,7 +10,7 @@
 //	package main
 //
 //	import (
-//	    "github.com/grokify/aiassistkit/commands"
+//	    "github.com/agentplexus/aiassistkit/commands"
 //	)
 //
 //	func main() {
@@ -37,12 +37,12 @@
 package commands
 
 import (
-	"github.com/grokify/aiassistkit/commands/core"
+	"github.com/agentplexus/aiassistkit/commands/core"
 
 	// Import adapters for side-effect registration
-	_ "github.com/grokify/aiassistkit/commands/claude"
-	_ "github.com/grokify/aiassistkit/commands/codex"
-	_ "github.com/grokify/aiassistkit/commands/gemini"
+	_ "github.com/agentplexus/aiassistkit/commands/claude"
+	_ "github.com/agentplexus/aiassistkit/commands/codex"
+	_ "github.com/agentplexus/aiassistkit/commands/gemini"
 )
 
 // Re-export core types for convenience

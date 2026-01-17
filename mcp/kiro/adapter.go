@@ -18,7 +18,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/grokify/aiassistkit/mcp/core"
+	"github.com/agentplexus/aiassistkit/mcp/core"
 )
 
 const (
