@@ -10,16 +10,17 @@ AI Assist Kit is a Go library for managing configuration files across multiple A
 
 ## Supported Tools
 
-| Tool | MCP Config | Hooks | Settings |
-|------|------------|-------|----------|
-| Claude Code / Claude Desktop | ✅ | ✅ | 🔜 |
-| Cursor IDE | ✅ | ✅ | 🔜 |
-| Windsurf (Codeium) | ✅ | ✅ | 🔜 |
-| VS Code / GitHub Copilot | ✅ | — | 🔜 |
-| OpenAI Codex CLI | ✅ | — | 🔜 |
-| Cline | ✅ | — | 🔜 |
-| Roo Code | ✅ | — | 🔜 |
-| AWS Kiro CLI | ✅ | — | 🔜 |
+| Tool | MCP | Hooks | Context | Plugins | Commands | Skills | Agents |
+|------|-----|-------|---------|---------|----------|--------|--------|
+| Claude Code / Claude Desktop | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Cursor IDE | ✅ | ✅ | — | — | — | — | — |
+| Windsurf (Codeium) | ✅ | ✅ | — | — | — | — | — |
+| VS Code / GitHub Copilot | ✅ | — | — | — | — | — | — |
+| OpenAI Codex CLI | ✅ | — | — | — | ✅ | ✅ | ✅ |
+| Cline | ✅ | — | — | — | — | — | — |
+| Roo Code | ✅ | — | — | — | — | — | — |
+| AWS Kiro CLI | ✅ | — | — | — | — | ✅ | — |
+| Google Gemini CLI | — | — | — | ✅ | ✅ | — | ✅ |
 
 ## Configuration Types
 
@@ -27,6 +28,13 @@ AI Assist Kit is a Go library for managing configuration files across multiple A
 |------|-------------|--------|
 | **MCP** | MCP server configurations | ✅ Available |
 | **Hooks** | Automation/lifecycle callbacks | ✅ Available |
+| **Context** | Project context (CONTEXT.json → CLAUDE.md) | ✅ Available |
+| **Plugins** | Plugin/extension configurations | ✅ Available |
+| **Commands** | Slash command definitions | ✅ Available |
+| **Skills** | Reusable skill definitions | ✅ Available |
+| **Agents** | AI assistant agent definitions | ✅ Available |
+| **Teams** | Multi-agent team orchestration | ✅ Available |
+| **Validation** | Configuration validators | ✅ Available |
 | **Settings** | Permissions, sandbox, general settings | 🔜 Coming soon |
 | **Rules** | Team rules, coding guidelines | 🔜 Coming soon |
 | **Memory** | CLAUDE.md, .cursorrules, etc. | 🔜 Coming soon |
@@ -344,17 +352,30 @@ func main() {
 ```
 aiassistkit/
 ├── aiassistkit.go          # Umbrella package
+├── agents/                 # Agent definitions
+│   ├── agentkit/           # AWS AgentKit adapter
+│   ├── awsagentcore/       # AWS CDK TypeScript generator
+│   ├── claude/             # Claude Code adapter
+│   ├── codex/              # Codex adapter
+│   ├── core/               # Canonical types
+│   ├── gemini/             # Gemini adapter
+│   └── kiro/               # AWS Kiro CLI adapter
+├── cmd/
+│   └── genagents/          # Multi-platform agent generator CLI
+├── commands/               # Slash command definitions
+│   ├── claude/             # Claude adapter
+│   ├── codex/              # Codex adapter
+│   ├── core/               # Canonical types
+│   └── gemini/             # Gemini adapter
 ├── context/                # Project context (CONTEXT.json → CLAUDE.md)
 │   ├── claude/             # CLAUDE.md converter
-│   └── core/               # Canonical types and converters
-├── hooks/                  # Hooks configurations
-│   ├── hooks.go            # Hooks package with re-exports
+│   └── core/               # Canonical types
+├── hooks/                  # Lifecycle hooks
 │   ├── claude/             # Claude adapter
 │   ├── core/               # Canonical types
 │   ├── cursor/             # Cursor adapter
 │   └── windsurf/           # Windsurf adapter
 ├── mcp/                    # MCP server configurations
-│   ├── mcp.go              # MCP package with re-exports
 │   ├── claude/             # Claude adapter
 │   ├── cline/              # Cline adapter
 │   ├── codex/              # Codex adapter (TOML)
@@ -364,9 +385,25 @@ aiassistkit/
 │   ├── roo/                # Roo Code adapter
 │   ├── vscode/             # VS Code adapter
 │   └── windsurf/           # Windsurf adapter
-├── memory/                 # Memory configurations (coming soon)
-├── rules/                  # Rules configurations (coming soon)
-└── settings/               # Settings configurations (coming soon)
+├── plugins/                # Plugin/extension configurations
+│   ├── claude/             # Claude adapter
+│   ├── core/               # Canonical types
+│   └── gemini/             # Gemini adapter
+├── publish/                # Marketplace publishing
+│   ├── claude/             # Claude marketplace adapter
+│   ├── core/               # Publishing interfaces
+│   └── github/             # GitHub API client
+├── skills/                 # Reusable skill definitions
+│   ├── claude/             # Claude adapter
+│   ├── codex/              # Codex adapter
+│   └── core/               # Canonical types
+├── teams/                  # Multi-agent orchestration
+│   └── core/               # Team types and workflows
+└── validation/             # Configuration validators
+    ├── claude/             # Claude validator
+    ├── codex/              # Codex validator
+    ├── core/               # Validation interfaces
+    └── gemini/             # Gemini validator
 ```
 
 ## Related Projects
