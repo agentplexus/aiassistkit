@@ -48,24 +48,24 @@
         { "description": "Initial release with unified configuration management for AI coding assistants supporting 9 tools" }
       ],
       "added": [
-        { "description": "`mcp` package with adapters for MCP server configurations (Claude, Cursor, Windsurf, VS Code, Codex, Cline, Roo, Kiro)" },
-        { "description": "`context` package with converter for generating CLAUDE.md from CONTEXT.json" },
-        { "description": "`agents` package with adapters for AI assistant agent definitions (Claude, Codex, Gemini, Kiro)" },
-        { "description": "`commands` package with adapters for slash command definitions (Claude, Codex, Gemini)" },
-        { "description": "`plugins` package with adapters for plugin/extension configurations (Claude, Gemini)" },
-        { "description": "`skills` package with adapters for reusable skill definitions (Claude, Codex)" },
-        { "description": "`teams` package for multi-agent team orchestration with process types (sequential, parallel, hierarchical)" },
-        { "description": "`validation` package with configuration validators (Claude, Codex, Gemini)" },
-        { "description": "Adapter pattern with canonical types and tool-specific converters" },
-        { "description": "Self-registering adapters via `init()` for automatic discovery" },
-        { "description": "JSON Schema validation for plugins, commands, skills, agents, teams, and validation configs" }
+        { "description": "`mcp` package with adapters for MCP server configurations (Claude, Cursor, Windsurf, VS Code, Codex, Cline, Roo, Kiro)", "commit": "ae9f762" },
+        { "description": "`context` package with converter for generating CLAUDE.md from CONTEXT.json", "commit": "50bacd7" },
+        { "description": "`agents` package with adapters for AI assistant agent definitions (Claude, Codex, Gemini, Kiro)", "commit": "b62c572" },
+        { "description": "`commands` package with adapters for slash command definitions (Claude, Codex, Gemini)", "commit": "7578daf" },
+        { "description": "`plugins` package with adapters for plugin/extension configurations (Claude, Gemini)", "commit": "76ba9cf" },
+        { "description": "`skills` package with adapters for reusable skill definitions (Claude, Codex)", "commit": "e532fc1" },
+        { "description": "`teams` package for multi-agent team orchestration with process types (sequential, parallel, hierarchical)", "commit": "5c75117" },
+        { "description": "`validation` package with configuration validators (Claude, Codex, Gemini)", "commit": "95ec174" },
+        { "description": "Adapter pattern with canonical types and tool-specific converters", "commit": "ae9f762" },
+        { "description": "Self-registering adapters via `init()` for automatic discovery", "commit": "ae9f762" },
+        { "description": "JSON Schema validation for plugins, commands, skills, agents, teams, and validation configs", "commit": "95ec174" }
       ],
       "documentation": [
-        { "description": "PRD.md product requirements document" },
-        { "description": "TRD.md technical requirements document" },
-        { "description": "ROADMAP.md and ROADMAP.json for project planning" },
-        { "description": "README.md with installation and usage examples" },
-        { "description": "PRESENTATION.md Marp slides for project overview" }
+        { "description": "PRD.md product requirements document", "commit": "a741e66" },
+        { "description": "TRD.md technical requirements document", "commit": "a741e66" },
+        { "description": "ROADMAP.md and ROADMAP.json for project planning", "commit": "a741e66" },
+        { "description": "README.md with installation and usage examples", "commit": "a741e66" },
+        { "description": "PRESENTATION.md Marp slides for project overview", "commit": "a741e66" }
       ]
     }
   ]
