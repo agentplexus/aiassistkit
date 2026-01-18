@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/agentplexus/aiassistkit/agents/core"
+	"github.com/agentplexus/assistantkit/agents/core"
 )
 
 func TestAdapter_Name(t *testing.T) {

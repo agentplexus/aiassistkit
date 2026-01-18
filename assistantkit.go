@@ -1,8 +1,8 @@
-// Package aiassistkit provides a unified interface for managing configuration files
+// Package assistantkit provides a unified interface for managing configuration files
 // across multiple AI coding assistants including Claude Code, Cursor, Windsurf,
 // VS Code, OpenAI Codex CLI, Cline, and Roo Code.
 //
-// AI Assist Kit supports multiple configuration types:
+// Assistant Kit supports multiple configuration types:
 //
 //   - MCP (Model Context Protocol) server configurations
 //   - Hooks (automation/lifecycle callbacks)
@@ -18,9 +18,9 @@
 // Example usage:
 //
 //	import (
-//	    "github.com/agentplexus/aiassistkit/mcp"
-//	    "github.com/agentplexus/aiassistkit/mcp/claude"
-//	    "github.com/agentplexus/aiassistkit/mcp/vscode"
+//	    "github.com/agentplexus/assistantkit/mcp"
+//	    "github.com/agentplexus/assistantkit/mcp/claude"
+//	    "github.com/agentplexus/assistantkit/mcp/vscode"
 //	)
 //
 //	// Read Claude config and write to VS Code format
@@ -38,8 +38,8 @@
 // Example usage:
 //
 //	import (
-//	    "github.com/agentplexus/aiassistkit/hooks"
-//	    "github.com/agentplexus/aiassistkit/hooks/claude"
+//	    "github.com/agentplexus/assistantkit/hooks"
+//	    "github.com/agentplexus/assistantkit/hooks/claude"
 //	)
 //
 //	// Create hooks configuration
@@ -54,16 +54,16 @@
 //
 // # Related Projects
 //
-// AI Assist Kit is part of the AgentPlexus family of Go modules:
-//   - AI Assist Kit - AI coding assistant configuration management
+// Assistant Kit is part of the AgentPlexus family of Go modules:
+//   - Assistant Kit - AI coding assistant configuration management
 //   - OmniVault - Unified secrets management
 //   - OmniLLM - Multi-provider LLM abstraction
 //   - OmniSerp - Search engine abstraction
 //   - OmniObserve - LLM observability abstraction
-package aiassistkit
+package assistantkit
 
-// Version is the current version of AI Assist Kit.
-const Version = "0.1.0"
+// Version is the current version of Assistant Kit.
+const Version = "0.5.0"
 
 // ConfigType represents the type of configuration.
 type ConfigType string
@@ -85,7 +85,7 @@ const (
 	ConfigTypeMemory ConfigType = "memory"
 )
 
-// SupportedConfigTypes returns a list of configuration types that AI Assist Kit supports.
+// SupportedConfigTypes returns a list of configuration types that Assistant Kit supports.
 func SupportedConfigTypes() []ConfigType {
 	return []ConfigType{
 		ConfigTypeMCP,
@@ -96,7 +96,7 @@ func SupportedConfigTypes() []ConfigType {
 	}
 }
 
-// SupportedTools returns a list of AI coding tools that AI Assist Kit supports.
+// SupportedTools returns a list of AI coding tools that Assistant Kit supports.
 func SupportedTools() []string {
 	return []string{
 		"claude",   // Claude Code / Claude Desktop

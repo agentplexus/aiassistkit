@@ -13,7 +13,7 @@
 //
 //	import (
 //	    "fmt"
-//	    "github.com/agentplexus/aiassistkit/teams"
+//	    "github.com/agentplexus/assistantkit/teams"
 //	)
 //
 //	func main() {
@@ -40,7 +40,7 @@
 package teams
 
 import (
-	"github.com/agentplexus/aiassistkit/teams/core"
+	"github.com/agentplexus/assistantkit/teams/core"
 )
 
 // Re-export core types for convenience.

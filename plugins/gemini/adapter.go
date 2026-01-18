@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/agentplexus/aiassistkit/plugins/core"
+	"github.com/agentplexus/assistantkit/plugins/core"
 )
 
 func init() {

@@ -7,8 +7,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/agentplexus/aiassistkit/publish/core"
-	"github.com/agentplexus/aiassistkit/publish/github"
+	"github.com/agentplexus/assistantkit/publish/core"
+	"github.com/agentplexus/assistantkit/publish/github"
 )
 
 const (
@@ -221,7 +221,7 @@ Adding the **%s** plugin to the Claude Code marketplace.
 	body += "- [ ] No security issues or sensitive data\n"
 	body += "- [ ] Tested locally with Claude Code\n"
 	body += "\n---\n\n"
-	body += "*Submitted via [aiassistkit](https://github.com/agentplexus/aiassistkit) publish tool*\n"
+	body += "*Submitted via [aiassistkit](https://github.com/agentplexus/assistantkit) publish tool*\n"
 
 	return body
 }

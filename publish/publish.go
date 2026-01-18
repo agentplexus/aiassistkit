@@ -12,8 +12,8 @@
 //	    "fmt"
 //	    "os"
 //
-//	    "github.com/agentplexus/aiassistkit/publish"
-//	    "github.com/agentplexus/aiassistkit/publish/claude"
+//	    "github.com/agentplexus/assistantkit/publish"
+//	    "github.com/agentplexus/assistantkit/publish/claude"
 //	)
 //
 //	func main() {
@@ -33,10 +33,10 @@
 package publish
 
 import (
-	"github.com/agentplexus/aiassistkit/publish/core"
+	"github.com/agentplexus/assistantkit/publish/core"
 
 	// Import publishers for side-effect registration
-	_ "github.com/agentplexus/aiassistkit/publish/claude"
+	_ "github.com/agentplexus/assistantkit/publish/claude"
 )
 
 // Re-export core types for convenience.

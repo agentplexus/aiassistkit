@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/agentplexus/aiassistkit/context/core"
+	"github.com/agentplexus/assistantkit/context/core"
 )
 
 const (

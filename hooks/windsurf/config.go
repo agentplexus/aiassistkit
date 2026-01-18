@@ -17,7 +17,7 @@
 //   - pre_user_prompt: Before prompt processing (can block)
 package windsurf
 
-import "github.com/agentplexus/aiassistkit/hooks/core"
+import "github.com/agentplexus/assistantkit/hooks/core"
 
 // WindsurfEvent represents Windsurf-specific hook event names.
 type WindsurfEvent string

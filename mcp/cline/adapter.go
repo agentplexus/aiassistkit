@@ -13,7 +13,7 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/agentplexus/aiassistkit/mcp/core"
+	"github.com/agentplexus/assistantkit/mcp/core"
 )
 
 const (

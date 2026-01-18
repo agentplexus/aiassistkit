@@ -30,12 +30,12 @@
 package hooks
 
 import (
-	"github.com/agentplexus/aiassistkit/hooks/core"
+	"github.com/agentplexus/assistantkit/hooks/core"
 
 	// Import adapters to register them
-	_ "github.com/agentplexus/aiassistkit/hooks/claude"
-	_ "github.com/agentplexus/aiassistkit/hooks/cursor"
-	_ "github.com/agentplexus/aiassistkit/hooks/windsurf"
+	_ "github.com/agentplexus/assistantkit/hooks/claude"
+	_ "github.com/agentplexus/assistantkit/hooks/cursor"
+	_ "github.com/agentplexus/assistantkit/hooks/windsurf"
 )
 
 // Re-export core types for convenience

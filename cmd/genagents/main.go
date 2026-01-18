@@ -20,14 +20,14 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/agentplexus/aiassistkit/agents"
-	"github.com/agentplexus/aiassistkit/agents/agentkit"
-	"github.com/agentplexus/aiassistkit/agents/awsagentcore"
-	"github.com/agentplexus/aiassistkit/agents/core"
+	"github.com/agentplexus/assistantkit/agents"
+	"github.com/agentplexus/assistantkit/agents/agentkit"
+	"github.com/agentplexus/assistantkit/agents/awsagentcore"
+	"github.com/agentplexus/assistantkit/agents/core"
 
 	// Import adapters to register them
-	_ "github.com/agentplexus/aiassistkit/agents/claude"
-	_ "github.com/agentplexus/aiassistkit/agents/kiro"
+	_ "github.com/agentplexus/assistantkit/agents/claude"
+	_ "github.com/agentplexus/assistantkit/agents/kiro"
 )
 
 func main() {

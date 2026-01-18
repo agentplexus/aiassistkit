@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/agentplexus/aiassistkit/agents/core"
+	"github.com/agentplexus/assistantkit/agents/core"
 	"github.com/pelletier/go-toml/v2"
 )
 

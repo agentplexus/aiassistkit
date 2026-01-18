@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/agentplexus/aiassistkit/hooks/core"
+	"github.com/agentplexus/assistantkit/hooks/core"
 )
 
 const (

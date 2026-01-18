@@ -11,7 +11,7 @@ import (
 
 	multiagentspec "github.com/agentplexus/multi-agent-spec/sdk/go"
 
-	"github.com/agentplexus/aiassistkit/agents/core"
+	"github.com/agentplexus/assistantkit/agents/core"
 )
 
 func init() {

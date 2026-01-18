@@ -10,7 +10,7 @@
 //	package main
 //
 //	import (
-//	    "github.com/agentplexus/aiassistkit/commands"
+//	    "github.com/agentplexus/assistantkit/commands"
 //	)
 //
 //	func main() {
@@ -37,12 +37,12 @@
 package commands
 
 import (
-	"github.com/agentplexus/aiassistkit/commands/core"
+	"github.com/agentplexus/assistantkit/commands/core"
 
 	// Import adapters for side-effect registration
-	_ "github.com/agentplexus/aiassistkit/commands/claude"
-	_ "github.com/agentplexus/aiassistkit/commands/codex"
-	_ "github.com/agentplexus/aiassistkit/commands/gemini"
+	_ "github.com/agentplexus/assistantkit/commands/claude"
+	_ "github.com/agentplexus/assistantkit/commands/codex"
+	_ "github.com/agentplexus/assistantkit/commands/gemini"
 )
 
 // Re-export core types for convenience

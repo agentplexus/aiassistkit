@@ -1,4 +1,4 @@
-module github.com/agentplexus/aiassistkit
+module github.com/agentplexus/assistantkit
 
 go 1.24.0
 

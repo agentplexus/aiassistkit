@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/agentplexus/aiassistkit/hooks/core"
+	"github.com/agentplexus/assistantkit/hooks/core"
 )
 
 func TestNewAdapter(t *testing.T) {
