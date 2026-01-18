@@ -13,9 +13,13 @@
         { "description": "Module renamed from aiassistkit to assistantkit" }
       ],
       "changed": [
-        { "description": "**BREAKING:** Module path renamed from `github.com/agentplexus/aiassistkit` to `github.com/agentplexus/assistantkit`" },
-        { "description": "Package name renamed from `aiassistkit` to `assistantkit`" },
-        { "description": "Main source file renamed from `aiassistkit.go` to `assistantkit.go`" }
+        { "description": "**BREAKING:** Module path renamed from `github.com/agentplexus/aiassistkit` to `github.com/agentplexus/assistantkit`", "commit": "2232018" },
+        { "description": "Package name renamed from `aiassistkit` to `assistantkit`", "commit": "2232018" },
+        { "description": "Main source file renamed from `aiassistkit.go` to `assistantkit.go`", "commit": "2232018" }
+      ],
+      "documentation": [
+        { "description": "Updated documentation for assistantkit rename", "commit": "3bdf058" },
+        { "description": "Added v0.5.0 release notes with migration guide", "commit": "01c2124" }
       ]
     },
     {
