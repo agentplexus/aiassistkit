@@ -10,19 +10,86 @@ anthropics/claude-plugins-official/
 └── external_plugins/     # Community plugins
     └── your-plugin/
         ├── .claude-plugin/
-        │   └── plugin.json
-        ├── commands/
-        ├── skills/
-        ├── agents/
-        └── README.md
+        │   └── plugin.json   # Consolidated config (MCP + hooks embedded)
+        ├── commands/         # Optional: Slash commands
+        ├── skills/           # Optional: Skills
+        ├── agents/           # Optional: Agents
+        └── README.md         # Required: Documentation
 ```
 
 ## Requirements
 
 Your plugin must have:
 
-- `.claude-plugin/plugin.json` - Plugin metadata
+- `.claude-plugin/plugin.json` - Plugin manifest (with embedded MCP and hooks)
 - `README.md` - Documentation
+
+## Generating with Bundle API
+
+Use the assistantkit bundle package to generate properly formatted plugin files:
+
+```go
+package main
+
+import (
+    "log"
+
+    "github.com/agentplexus/assistantkit/bundle"
+    "github.com/agentplexus/assistantkit/hooks/core"
+)
+
+func main() {
+    // Create bundle
+    b := bundle.New("my-plugin", "1.0.0", "A helpful plugin")
+    b.Plugin.Author = "Your Name"
+    b.Plugin.License = "MIT"
+    b.Plugin.Repository = "https://github.com/yourname/my-plugin"
+
+    // Add MCP server
+    b.AddMCPServer("my-server", bundle.MCPServer{
+        Command: "./my-server",
+        Env: map[string]string{
+            "API_KEY": "${MY_API_KEY}",
+        },
+    })
+
+    // Add hooks
+    cfg := bundle.NewHooksConfig()
+    cfg.AddHook(core.OnStop, core.Hook{
+        Type:   "prompt",
+        Prompt: "Task stopped. Consider follow-up actions.",
+    })
+    b.SetHooks(cfg)
+
+    // Add skill
+    skill := bundle.NewSkill("my-skill", "Skill description")
+    skill.Instructions = "# My Skill\n\nInstructions here..."
+    b.AddSkill(skill)
+
+    // Add command
+    cmd := bundle.NewCommand("my-cmd", "Command description")
+    cmd.Instructions = "Command instructions..."
+    b.AddCommand(cmd)
+
+    // Generate for Claude Code
+    if err := b.Generate("claude", "./output"); err != nil {
+        log.Fatalf("Generate failed: %v", err)
+    }
+}
+```
+
+This generates:
+
+```
+output/
+├── .claude-plugin/
+│   └── plugin.json    # Consolidated with MCP + hooks embedded
+├── commands/
+│   └── my-cmd.md
+└── skills/
+    └── my-skill/
+        └── SKILL.md
+```
 
 ## Manual Submission
 
@@ -154,6 +221,8 @@ if err != nil {
 
 ## plugin.json Format
 
+The consolidated format embeds MCP servers and hooks directly in `plugin.json`:
+
 ```json
 {
   "name": "my-plugin",
@@ -161,9 +230,96 @@ if err != nil {
   "description": "A helpful plugin for developers",
   "author": "Your Name",
   "repository": "https://github.com/yourname/my-plugin",
-  "license": "MIT"
+  "license": "MIT",
+  "mcpServers": {
+    "my-server": {
+      "command": "./my-server",
+      "args": ["--mode", "production"],
+      "env": {
+        "API_KEY": "${MY_API_KEY}"
+      }
+    }
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Running command...'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "The task has stopped. Consider if follow-up is needed."
+          }
+        ]
+      }
+    ]
+  },
+  "commands": "./commands/",
+  "skills": "./skills/",
+  "agents": "./agents/"
 }
 ```
+
+### plugin.json Fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `name` | string | Yes | Plugin identifier (lowercase, dashes) |
+| `version` | string | Yes | Semantic version (e.g., `1.0.0`) |
+| `description` | string | Yes | Brief description |
+| `author` | string | No | Author name or organization |
+| `license` | string | No | License identifier (e.g., `MIT`) |
+| `repository` | string | No | GitHub repository URL |
+| `homepage` | string | No | Project homepage URL |
+| `mcpServers` | object | No | MCP server configurations |
+| `hooks` | object | No | Event hooks (PreToolUse, PostToolUse, Stop, etc.) |
+| `commands` | string | No | Path to commands directory |
+| `skills` | string | No | Path to skills directory |
+| `agents` | string | No | Path to agents directory |
+
+### MCP Server Configuration
+
+```json
+{
+  "mcpServers": {
+    "server-name": {
+      "command": "./path/to/binary",
+      "args": ["--flag", "value"],
+      "env": {
+        "VAR_NAME": "${ENV_VAR}"
+      },
+      "cwd": "/optional/working/dir",
+      "disabled": false
+    }
+  }
+}
+```
+
+### Hooks Configuration
+
+Hooks are triggered on specific events:
+
+| Event | Description |
+|-------|-------------|
+| `PreToolUse` | Before tool execution (can use `matcher` to filter) |
+| `PostToolUse` | After tool execution |
+| `Stop` | When agent stops |
+| `Notification` | When notifications occur |
+| `SubagentStop` | When subagent stops |
+
+Hook types:
+
+- `command` - Execute a shell command
+- `prompt` - Inject a prompt for the model to consider
 
 ## Dry Run
 
