@@ -35,6 +35,7 @@ AssistantKit is a Go library for managing configuration files across multiple AI
 | **Agents** | AI assistant agent definitions | ✅ Available |
 | **Teams** | Multi-agent team orchestration | ✅ Available |
 | **Validation** | Configuration validators | ✅ Available |
+| **Bundle** | Unified bundle generation for multi-tool output | ✅ Available |
 | **Settings** | Permissions, sandbox, general settings | 🔜 Coming soon |
 | **Rules** | Team rules, coding guidelines | 🔜 Coming soon |
 | **Memory** | CLAUDE.md, .cursorrules, etc. | 🔜 Coming soon |
@@ -350,8 +351,12 @@ func main() {
 ## Project Structure
 
 ```
-aiassistkit/
-├── aiassistkit.go          # Umbrella package
+assistantkit/
+├── assistantkit.go         # Umbrella package
+├── bundle/                 # Unified bundle generation
+│   ├── bundle.go           # Bundle type and methods
+│   ├── generate.go         # Multi-tool generation
+│   └── errors.go           # Error types
 ├── agents/                 # Agent definitions
 │   ├── agentkit/           # AWS AgentKit adapter
 │   ├── awsagentcore/       # AWS CDK TypeScript generator

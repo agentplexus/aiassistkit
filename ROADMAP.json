@@ -28,29 +28,50 @@
     {
       "id": "v0.2",
       "name": "v0.2.0 - Plugins & Commands",
-      "status": "in_progress",
+      "status": "completed",
       "order": 2,
       "description": "Add plugin manifests and command definitions"
     },
     {
       "id": "v0.3",
-      "name": "v0.3.0 - Skills & Agents",
-      "status": "planned",
+      "name": "v0.3.0 - Marketplace Publishing",
+      "status": "completed",
       "order": 3,
-      "description": "Add skills and agent definitions"
+      "description": "Automated marketplace publishing with GitHub PR creation"
     },
     {
       "id": "v0.4",
-      "name": "v0.4.0 - Settings & Rules",
-      "status": "planned",
+      "name": "v0.4.0 - Hooks & Organization",
+      "status": "completed",
       "order": 4,
+      "description": "Hooks package and migration to agentplexus organization"
+    },
+    {
+      "id": "v0.5",
+      "name": "v0.5.0 - Rename",
+      "status": "completed",
+      "order": 5,
+      "description": "Module renamed from aiassistkit to assistantkit"
+    },
+    {
+      "id": "v0.6",
+      "name": "v0.6.0 - Bundle Generation",
+      "status": "completed",
+      "order": 6,
+      "description": "Unified bundle generation for multi-tool plugin output"
+    },
+    {
+      "id": "v0.7",
+      "name": "v0.7.0 - Settings & Rules",
+      "status": "planned",
+      "order": 7,
       "description": "Add settings and rules configurations"
     },
     {
       "id": "v1.0",
       "name": "v1.0.0 - General Availability",
       "status": "planned",
-      "order": 5,
+      "order": 8,
       "description": "Production-ready release with full feature set"
     },
     {
@@ -488,12 +509,47 @@
       "priority": "medium"
     },
     {
+      "id": "bundle-core",
+      "title": "Bundle core types",
+      "description": "Unified Bundle struct combining all plugin components",
+      "status": "completed",
+      "version": "0.6.0",
+      "phase": "v0.6",
+      "area": "core",
+      "type": "Added",
+      "priority": "high"
+    },
+    {
+      "id": "bundle-generate",
+      "title": "Bundle generation",
+      "description": "Generate() and GenerateAll() for multi-tool output",
+      "status": "completed",
+      "version": "0.6.0",
+      "phase": "v0.6",
+      "area": "core",
+      "type": "Added",
+      "priority": "high",
+      "depends_on": ["bundle-core"]
+    },
+    {
+      "id": "bundle-consolidated",
+      "title": "Consolidated plugin.json",
+      "description": "Claude plugin.json with embedded MCP servers and hooks",
+      "status": "completed",
+      "version": "0.6.0",
+      "phase": "v0.6",
+      "area": "plugins",
+      "type": "Added",
+      "priority": "high",
+      "depends_on": ["bundle-generate"]
+    },
+    {
       "id": "settings-core",
       "title": "Settings core types",
       "description": "Canonical Settings struct for permissions/sandbox",
       "status": "planned",
-      "version": "0.4.0",
-      "phase": "v0.4",
+      "version": "0.7.0",
+      "phase": "v0.7",
       "area": "config",
       "type": "Added",
       "priority": "medium"
@@ -503,8 +559,8 @@
       "title": "Claude settings adapter",
       "description": "Claude Code settings.json support",
       "status": "planned",
-      "version": "0.4.0",
-      "phase": "v0.4",
+      "version": "0.7.0",
+      "phase": "v0.7",
       "area": "tools",
       "type": "Added",
       "priority": "medium"
@@ -514,8 +570,8 @@
       "title": "Rules core types",
       "description": "Canonical Rules struct for coding guidelines",
       "status": "planned",
-      "version": "0.4.0",
-      "phase": "v0.4",
+      "version": "0.7.0",
+      "phase": "v0.7",
       "area": "config",
       "type": "Added",
       "priority": "medium"
@@ -525,8 +581,8 @@
       "title": "Cursor rules adapter",
       "description": ".cursorrules generation",
       "status": "planned",
-      "version": "0.4.0",
-      "phase": "v0.4",
+      "version": "0.7.0",
+      "phase": "v0.7",
       "area": "tools",
       "type": "Added",
       "priority": "medium"
@@ -536,8 +592,8 @@
       "title": "Copilot instructions adapter",
       "description": ".github/copilot-instructions.md generation",
       "status": "planned",
-      "version": "0.4.0",
-      "phase": "v0.4",
+      "version": "0.7.0",
+      "phase": "v0.7",
       "area": "tools",
       "type": "Added",
       "priority": "medium"
@@ -631,10 +687,13 @@
   ],
 
   "version_history": [
-    {"version": "0.1.0", "date": "2026-01-03", "status": "completed", "summary": "MCP, Hooks, Context support"},
-    {"version": "0.2.0", "date": null, "status": "in_progress", "summary": "Plugins and Commands"},
-    {"version": "0.3.0", "date": null, "status": "planned", "summary": "Skills and Agents"},
-    {"version": "0.4.0", "date": null, "status": "planned", "summary": "Settings and Rules"},
+    {"version": "0.1.0", "date": "2026-01-12", "status": "completed", "summary": "MCP, Hooks, Context support"},
+    {"version": "0.2.0", "date": "2026-01-17", "status": "completed", "summary": "Plugins and Commands with genagents CLI"},
+    {"version": "0.3.0", "date": "2026-01-17", "status": "completed", "summary": "Marketplace publishing with GitHub PR creation"},
+    {"version": "0.4.0", "date": "2026-01-17", "status": "completed", "summary": "Hooks package and agentplexus migration"},
+    {"version": "0.5.0", "date": "2026-01-18", "status": "completed", "summary": "Module renamed to assistantkit"},
+    {"version": "0.6.0", "date": "2026-01-18", "status": "completed", "summary": "Unified bundle generation for multi-tool output"},
+    {"version": "0.7.0", "date": null, "status": "planned", "summary": "Settings and Rules"},
     {"version": "1.0.0", "date": null, "status": "planned", "summary": "General availability with CLI"}
   ]
 }

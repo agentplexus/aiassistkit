@@ -7,6 +7,34 @@
   "maintainers": ["agentplexus"],
   "releases": [
     {
+      "version": "v0.6.0",
+      "date": "2026-01-18",
+      "highlights": [
+        { "description": "Unified bundle generation package for multi-tool plugin output" }
+      ],
+      "added": [
+        { "description": "`bundle` package for unified plugin bundle generation across tools (Claude, Kiro, Gemini, Cursor, Codex, VS Code)", "commit": "7419d87" },
+        { "description": "`bundle.New()`, `Generate()`, `GenerateAll()` methods for creating and outputting bundles", "commit": "7419d87" },
+        { "description": "Consolidated plugin.json format for Claude with embedded MCP servers and hooks", "commit": "7419d87" },
+        { "description": "`MCPServerConfig`, `HooksConfig`, `HookEntry`, `Hook` types in `plugins/claude`", "commit": "885b084" }
+      ],
+      "changed": [
+        { "description": "**BREAKING:** `ClaudePlugin.Hooks` field type changed from `string` to `*HooksConfig`", "commit": "885b084" },
+        { "description": "`ClaudePlugin` now supports embedded `MCPServers` map for consolidated config", "commit": "885b084" },
+        { "description": "`ToCanonical()` and `FromCanonical()` updated to convert MCP servers", "commit": "885b084" }
+      ],
+      "documentation": [
+        { "description": "Updated Claude marketplace docs with bundle API examples and consolidated format", "commit": "fecbd4c" }
+      ],
+      "tests": [
+        { "description": "Added unit tests for bundle package (New, AddComponents, Generate, GenerateAll)", "commit": "aeb9962" }
+      ],
+      "dependencies": [
+        { "description": "Updated `multi-agent-spec/sdk/go` v0.1.0 → v0.3.0", "commit": "aa28c70" },
+        { "description": "Updated `gogithub` v0.5.0 → v0.6.0", "commit": "aa28c70" }
+      ]
+    },
+    {
       "version": "v0.5.0",
       "date": "2026-01-18",
       "highlights": [
