@@ -7,6 +7,41 @@
   "maintainers": ["agentplexus"],
   "releases": [
     {
+      "version": "v0.7.0",
+      "date": "2026-01-24",
+      "highlights": [
+        { "description": "Adopt multi-agent-spec SDK as canonical agent model with new powers, skills/kiro, and CLI packages" }
+      ],
+      "added": [
+        { "description": "`powers` package with canonical Power type and Kiro IDE power generation (POWER.md, mcp.json, steering files)", "commit": "48a5262" },
+        { "description": "`skills/kiro` adapter for generating Kiro steering files from canonical skills", "commit": "b56063d" },
+        { "description": "Markdown skill format with YAML frontmatter in `skills/core`", "commit": "b56063d" },
+        { "description": "`generate` package for programmatic plugin and deployment generation (Claude, Kiro, Gemini)", "commit": "f5df2a5" },
+        { "description": "`cmd/assistantkit` CLI with `generate plugins` and `generate deployment` subcommands", "commit": "22d3d57" },
+        { "description": "`genagents` CLI: `--skills`/`--skills-output` flags for steering file generation", "commit": "d204e70" },
+        { "description": "`genagents` CLI: `--install` flag to copy agents and skills to `~/.kiro/`", "commit": "d204e70" },
+        { "description": "Model type constants: `ModelHaiku`, `ModelSonnet`, `ModelOpus`", "commit": "458c974" }
+      ],
+      "changed": [
+        { "description": "**BREAKING:** `Agent` struct replaced with type alias to `multiagentspec.Agent`; setter methods removed in favor of builder pattern", "commit": "458c974" },
+        { "description": "**BREAKING:** `Agent.Model` field type changed from `string` to `Model` (type alias to `multiagentspec.Model`)", "commit": "458c974" },
+        { "description": "Kiro agent adapter uses actual tool names (`execute_bash`, `fs_read`, `fs_write`) with deduplication", "commit": "458c974" }
+      ],
+      "documentation": [
+        { "description": "Added CLI reference documentation for `generate plugins` command", "commit": "67bfa39" },
+        { "description": "Updated README with CLI install and usage sections", "commit": "67bfa39" },
+        { "description": "Added v0.7.0 release notes", "commit": "054a744" }
+      ],
+      "tests": [
+        { "description": "Updated agent tests for Model type and builder-style API", "commit": "026fcfc" },
+        { "description": "Updated Kiro adapter tests for new tool names and deduplication", "commit": "026fcfc" }
+      ],
+      "dependencies": [
+        { "description": "Upgraded `multi-agent-spec/sdk/go` v0.3.0 → v0.4.0", "commit": "840400b" },
+        { "description": "Added `github.com/spf13/cobra` v1.10.2 for CLI framework", "commit": "840400b" }
+      ]
+    },
+    {
       "version": "v0.6.0",
       "date": "2026-01-18",
       "highlights": [

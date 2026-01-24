@@ -36,6 +36,8 @@ AssistantKit is a Go library for managing configuration files across multiple AI
 | **Teams** | Multi-agent team orchestration | ✅ Available |
 | **Validation** | Configuration validators | ✅ Available |
 | **Bundle** | Unified bundle generation for multi-tool output | ✅ Available |
+| **Powers** | Kiro IDE power generation (POWER.md, mcp.json) | ✅ Available |
+| **Generate** | Programmatic plugin and deployment generation | ✅ Available |
 | **Settings** | Permissions, sandbox, general settings | 🔜 Coming soon |
 | **Rules** | Team rules, coding guidelines | 🔜 Coming soon |
 | **Memory** | CLAUDE.md, .cursorrules, etc. | 🔜 Coming soon |
@@ -436,6 +438,9 @@ assistantkit/
 │   └── genagents/          # Multi-platform agent generator CLI
 ├── generate/               # Plugin generation library
 │   └── generate.go         # Core generation logic
+├── powers/                 # Kiro IDE powers
+│   ├── core/               # Canonical Power type
+│   └── kiro/               # Kiro power adapter
 ├── commands/               # Slash command definitions
 │   ├── claude/             # Claude adapter
 │   ├── codex/              # Codex adapter
@@ -470,7 +475,8 @@ assistantkit/
 ├── skills/                 # Reusable skill definitions
 │   ├── claude/             # Claude adapter
 │   ├── codex/              # Codex adapter
-│   └── core/               # Canonical types
+│   ├── core/               # Canonical types
+│   └── kiro/               # Kiro steering file adapter
 ├── teams/                  # Multi-agent orchestration
 │   └── core/               # Team types and workflows
 └── validation/             # Configuration validators
