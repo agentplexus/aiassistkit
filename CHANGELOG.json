@@ -7,6 +7,27 @@
   "maintainers": ["agentplexus"],
   "releases": [
     {
+      "version": "v0.8.0",
+      "date": "2026-01-25",
+      "highlights": [
+        { "description": "Simplified agent generation with 'generate agents' and 'generate all' commands" },
+        { "description": "Markdown command file support with YAML frontmatter" }
+      ],
+      "added": [
+        { "description": "`generate agents` command for simplified multi-agent-spec workflow", "commit": "2f5db70" },
+        { "description": "`generate all` command combining plugins and agents generation", "commit": "2f5db70" },
+        { "description": "Markdown command file support with YAML frontmatter in `commands/core`", "commit": "42abcd7" },
+        { "description": "Auto-detection of command file format (.md vs .json)", "commit": "42abcd7" },
+        { "description": "CLI dependency checking with HITL prompts in `requirements`", "commit": "1be8e02" }
+      ],
+      "documentation": [
+        { "description": "Added 'generate agents' command documentation to README", "commit": "b9a9a39" }
+      ],
+      "dependencies": [
+        { "description": "Upgraded `multi-agent-spec/sdk/go` v0.4.0 → v0.5.0", "commit": "aa4e40a" }
+      ]
+    },
+    {
       "version": "v0.7.0",
       "date": "2026-01-24",
       "highlights": [
