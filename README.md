@@ -106,6 +106,75 @@ plugins/spec/
     └── release.json
 ```
 
+### Generate Agents (Simplified)
+
+Generate platform-specific agents from a multi-agent-spec format directory:
+
+```bash
+assistantkit generate agents
+```
+
+This is a simplified command that reads from `specs/agents/*.md` (YAML frontmatter + markdown body) and uses `specs/deployments/<target>.json` to determine output locations.
+
+#### Flags
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--specs` | `specs` | Path to specs directory containing agents/ and deployments/ |
+| `--target` | `local` | Deployment target (looks for `specs/deployments/<target>.json`) |
+| `--output` | `.` | Output base directory (repo root) for relative paths |
+
+#### Example
+
+```bash
+# Generate using defaults (target=local, output=current directory)
+assistantkit generate agents
+
+# Use a different deployment target
+assistantkit generate agents --target=agentcore
+
+# Specify all options
+assistantkit generate agents --specs=specs --target=local --output=/path/to/repo
+```
+
+#### Specs Directory Structure
+
+```
+specs/
+├── agents/              # Agent definitions (*.md with YAML frontmatter)
+│   ├── coordinator.md
+│   ├── researcher.md
+│   └── writer.md
+├── teams/               # Team workflow definitions (optional)
+│   └── my-team.json
+└── deployments/         # Deployment configurations
+    ├── local.json       # Local development (default)
+    ├── agentcore.json   # AWS AgentCore
+    └── k8s.json         # Kubernetes
+```
+
+#### Deployment File Format
+
+```json
+{
+  "team": "my-team",
+  "targets": [
+    {
+      "name": "local-claude",
+      "platform": "claude-code",
+      "output": ".claude/agents"
+    },
+    {
+      "name": "local-kiro",
+      "platform": "kiro-cli",
+      "output": "plugins/kiro/agents"
+    }
+  ]
+}
+```
+
+Output paths are resolved relative to the `--output` directory.
+
 ### Generated Output
 
 The generator produces platform-specific plugins:
