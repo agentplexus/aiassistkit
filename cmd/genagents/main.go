@@ -392,7 +392,8 @@ func installKiroFiles(agentsDir, steeringDir, prefix string, verbose bool) error
 			}
 
 			srcPath := filepath.Join(agentsDir, entry.Name())
-			dstName := entry.Name()
+			// Use filepath.Base to sanitize filename and prevent path traversal (gosec G703)
+			dstName := filepath.Base(entry.Name())
 			if prefix != "" {
 				dstName = prefix + "_" + dstName
 			}
@@ -411,6 +412,7 @@ func installKiroFiles(agentsDir, steeringDir, prefix string, verbose bool) error
 				}
 			}
 
+			// #nosec G703 -- Path traversal prevented: entry.Name() from os.ReadDir returns base name only, sanitized with filepath.Base
 			if err := os.WriteFile(dstPath, data, 0600); err != nil {
 				return fmt.Errorf("failed to write %s: %w", dstPath, err)
 			}
@@ -439,7 +441,8 @@ func installKiroFiles(agentsDir, steeringDir, prefix string, verbose bool) error
 			}
 
 			srcPath := filepath.Join(steeringDir, entry.Name())
-			dstName := entry.Name()
+			// Use filepath.Base to sanitize filename and prevent path traversal (gosec G703)
+			dstName := filepath.Base(entry.Name())
 			if prefix != "" {
 				dstName = prefix + "_" + dstName
 			}
@@ -450,6 +453,7 @@ func installKiroFiles(agentsDir, steeringDir, prefix string, verbose bool) error
 				return fmt.Errorf("failed to read %s: %w", srcPath, err)
 			}
 
+			// #nosec G703 -- Path traversal prevented: entry.Name() from os.ReadDir returns base name only, sanitized with filepath.Base
 			if err := os.WriteFile(dstPath, data, 0600); err != nil {
 				return fmt.Errorf("failed to write %s: %w", dstPath, err)
 			}
