@@ -1,10 +1,10 @@
 module github.com/plexusone/assistantkit
 
-go 1.25.0
+go 1.26.0
 
 require (
 	github.com/google/go-github/v84 v84.0.0
-	github.com/grokify/gogithub v0.10.0
+	github.com/grokify/gogithub v0.11.0
 	github.com/pelletier/go-toml/v2 v2.3.0
 	github.com/plexusone/multi-agent-spec/sdk/go v0.8.0
 	github.com/spf13/cobra v1.10.2
@@ -13,14 +13,19 @@ require (
 
 require (
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
-	github.com/buger/jsonparser v1.1.1 // indirect
+	github.com/buger/jsonparser v1.1.2 // indirect
+	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
 	github.com/google/go-querystring v1.2.0 // indirect
+	github.com/grokify/mogo v0.74.1 // indirect
+	github.com/huandu/xstrings v1.5.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/invopop/jsonschema v0.13.0 // indirect
-	github.com/mailru/easyjson v0.9.1 // indirect
+	github.com/mailru/easyjson v0.9.2 // indirect
 	github.com/spf13/pflag v1.0.10 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/quicktemplate v1.8.0 // indirect
 	github.com/wk8/go-ordered-map/v2 v2.1.8 // indirect
-	golang.org/x/oauth2 v0.35.0 // indirect
+	golang.org/x/exp v0.0.0-20260312153236-7ab1446f8b90 // indirect
+	golang.org/x/oauth2 v0.36.0 // indirect
+	golang.org/x/text v0.35.0 // indirect
 )
