@@ -14,8 +14,8 @@ github.com/google/go-github/v84 v84.0.0 h1:I/0Xn5IuChMe8TdmI2bbim5nyhaRFJ7DEdzmD
 github.com/google/go-github/v84 v84.0.0/go.mod h1:WwYL1z1ajRdlaPszjVu/47x1L0PXukJBn73xsiYrRRQ=
 github.com/google/go-querystring v1.2.0 h1:yhqkPbu2/OH+V9BfpCVPZkNmUXhb2gBxJArfhIxNtP0=
 github.com/google/go-querystring v1.2.0/go.mod h1:8IFJqpSRITyJ8QhQ13bmbeMBDfmeEJZD5A0egEOmkqU=
-github.com/grokify/gogithub v0.11.0 h1:FvOZNckksQdcArkVhOsYbipgsHlZLd2W2cAPWHo1jkA=
-github.com/grokify/gogithub v0.11.0/go.mod h1:vUbtncFnChOr/l5x2uT9FBRqg1Wz2N8mwueISNCwGuA=
+github.com/grokify/gogithub v0.12.1 h1:sCSq/1uX4j0REliYPVOdwsb/tfLs72JOEyn/uP2SeDg=
+github.com/grokify/gogithub v0.12.1/go.mod h1:jM23QcxP8IcBSC4oOgcchp+1ckPcZKYlaohnOsJ6Ewg=
 github.com/grokify/mogo v0.74.1 h1:oODNqQFBWD4lNEdr5gq0eDMVUUyP26bOEboK9UZycnw=
 github.com/grokify/mogo v0.74.1/go.mod h1:RC7/sy7MsyZSwJesNohN2EkGvgSFeSLvzOw4c/dGdSo=
 github.com/huandu/xstrings v1.5.0 h1:2ag3IFq9ZDANvthTwTiqSSZLjDc+BedvHPAp5tJy2TI=
