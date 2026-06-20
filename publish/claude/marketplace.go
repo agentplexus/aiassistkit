@@ -38,9 +38,13 @@ type Publisher struct {
 }
 
 // NewPublisher creates a new Claude marketplace publisher.
-func NewPublisher(token string) *Publisher {
+func NewPublisher(token string) (*Publisher, error) {
+	client, err := github.NewClient(token)
+	if err != nil {
+		return nil, err
+	}
 	return &Publisher{
-		client: github.NewClient(token),
+		client: client,
 		config: core.MarketplaceConfig{
 			Owner:         MarketplaceOwner,
 			Repo:          MarketplaceRepo,
@@ -48,7 +52,7 @@ func NewPublisher(token string) *Publisher {
 			PluginPath:    ExternalPluginsPath,
 			RequiredFiles: RequiredFiles,
 		},
-	}
+	}, nil
 }
 
 // Name returns the marketplace identifier.

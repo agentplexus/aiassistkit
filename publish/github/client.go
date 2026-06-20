@@ -5,7 +5,7 @@ package github
 import (
 	"context"
 
-	"github.com/google/go-github/v84/github"
+	"github.com/google/go-github/v88/github"
 	"github.com/grokify/gogithub/auth"
 	"github.com/grokify/gogithub/pr"
 	"github.com/grokify/gogithub/repo"
@@ -18,9 +18,12 @@ type Client struct {
 }
 
 // NewClient creates a new GitHub client with the given token.
-func NewClient(token string) *Client {
-	gh := auth.NewGitHubClient(context.Background(), token)
-	return &Client{gh: gh}
+func NewClient(token string) (*Client, error) {
+	gh, err := auth.NewGitHubClient(context.Background(), token)
+	if err != nil {
+		return nil, err
+	}
+	return &Client{gh: gh}, nil
 }
 
 // SetDryRun enables or disables dry run mode.

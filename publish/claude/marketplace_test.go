@@ -7,14 +7,20 @@ import (
 )
 
 func TestPublisher_Name(t *testing.T) {
-	p := NewPublisher("test-token")
+	p, err := NewPublisher("test-token")
+	if err != nil {
+		t.Fatalf("NewPublisher() error = %v", err)
+	}
 	if got := p.Name(); got != "claude" {
 		t.Errorf("Name() = %q, want %q", got, "claude")
 	}
 }
 
 func TestPublisher_Validate(t *testing.T) {
-	p := NewPublisher("test-token")
+	p, err := NewPublisher("test-token")
+	if err != nil {
+		t.Fatalf("NewPublisher() error = %v", err)
+	}
 
 	// Create temp directory with valid plugin structure
 	tmpDir, err := os.MkdirTemp("", "claude-plugin-test")
