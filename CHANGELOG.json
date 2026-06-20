@@ -7,6 +7,51 @@
   "maintainers": ["plexusone"],
   "releases": [
     {
+      "version": "v0.13.0",
+      "date": "2026-06-20",
+      "highlights": [
+        {"description": "New `workflows` package for multi-phase spec creation processes with 6 platform adapters"},
+        {"description": "Upgraded go-github from v84 to v88 with updated API patterns"},
+        {"description": "PlexusOne unified navigation bar for documentation sites"}
+      ],
+      "added": [
+        {"description": "`workflows/core` package with canonical `Workflow` and `Phase` types", "commit": "ae36227"},
+        {"description": "`workflows/core.LoadSourceRepo()` for loading spec-workflows repositories", "commit": "ae36227"},
+        {"description": "`workflows/core.Adapter` interface for platform-specific workflow generation", "commit": "083d4c3"},
+        {"description": "`workflows/core.Register()`, `Get()`, `List()` for adapter registry", "commit": "083d4c3"},
+        {"description": "`workflows/core.GenerateConfig()` for workflow file generation", "commit": "083d4c3"},
+        {"description": "`workflows/claude` adapter for Claude Code (CLAUDE.md + .spec-workflows/)", "commit": "471c2e3"},
+        {"description": "`workflows/kiro` adapter for Kiro CLI (.kiro/steering/spec-workflows/)", "commit": "4a14688"},
+        {"description": "`workflows/cursor` adapter for Cursor IDE (.cursor/rules/spec-workflows.mdc)", "commit": "7ad1064"},
+        {"description": "`workflows/copilot` adapter for GitHub Copilot (.github/copilot-instructions.md)", "commit": "13f810c"},
+        {"description": "`workflows/cline` adapter for Cline (.clinerules/spec-workflows.md)", "commit": "3310400"},
+        {"description": "`workflows/amazonq` adapter for Amazon Q Developer (.amazonq/rules/spec-workflows/)", "commit": "a8153da"},
+        {"description": "PlexusOne unified navigation bar across documentation sites", "commit": "7b9716d"}
+      ],
+      "changed": [
+        {"description": "`publish/github.NewClient()` now returns `(*Client, error)` instead of `*Client`", "commit": "f12bec1"},
+        {"description": "`publish/claude.NewPublisher()` now returns `(*Publisher, error)` instead of `*Publisher`", "commit": "f12bec1"}
+      ],
+      "tests": [
+        {"description": "Added tests for `workflows/core.NewWorkflow()` constructor", "commit": "216529f"},
+        {"description": "Added tests for `workflows/core.LoadSourceRepo()` with temp directory structure", "commit": "216529f"},
+        {"description": "Added tests for `workflows/core.NotFoundError` error handling", "commit": "216529f"}
+      ],
+      "documentation": [
+        {"description": "Updated README shields for CI/CD badges", "commit": "2175948"},
+        {"description": "Applied PlexusOne MkDocs theme styling", "commit": "77371f5"}
+      ],
+      "dependencies": [
+        {"description": "Upgraded `github.com/google/go-github` from v84.0.0 to v88.0.0", "commit": "f12bec1"},
+        {"description": "Upgraded `github.com/grokify/gogithub` from v0.12.1 to v0.13.0", "commit": "cbc8e70"},
+        {"description": "Upgraded `github.com/pelletier/go-toml/v2` from v2.3.0 to v2.4.0", "commit": "fa10298"},
+        {"description": "Updated `actions/checkout` from 6 to 7", "commit": "4eb94ef"}
+      ],
+      "chores": [
+        {"description": "Updated go.mod dependencies", "commit": "16a76c7"}
+      ]
+    },
+    {
       "version": "v0.12.0",
       "date": "2026-03-08",
       "highlights": [
