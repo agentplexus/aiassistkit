@@ -60,6 +60,7 @@ AssistantKit is a Go library for managing configuration files across multiple AI
 | **Bundle** | Unified bundle generation for multi-tool output | ✅ Available |
 | **Powers** | Kiro IDE power generation (POWER.md, mcp.json) | ✅ Available |
 | **Generate** | Programmatic plugin and deployment generation | ✅ Available |
+| **Workflows** | Multi-phase spec creation processes | ✅ Available |
 | **Settings** | Permissions, sandbox, general settings | 🔜 Coming soon |
 | **Rules** | Team rules, coding guidelines | 🔜 Coming soon |
 | **Memory** | CLAUDE.md, .cursorrules, etc. | 🔜 Coming soon |
@@ -626,11 +627,19 @@ assistantkit/
 ├── teams/                  # Multi-agent orchestration
 │   ├── core/               # Team types, SelfDirectedTeam wrapper
 │   └── claude/             # Claude Code adapter for self-directed teams
-└── validation/             # Configuration validators
-    ├── claude/             # Claude validator
-    ├── codex/              # Codex validator
-    ├── core/               # Validation interfaces
-    └── gemini/             # Gemini validator
+├── validation/             # Configuration validators
+│   ├── claude/             # Claude validator
+│   ├── codex/              # Codex validator
+│   ├── core/               # Validation interfaces
+│   └── gemini/             # Gemini validator
+└── workflows/              # Multi-phase spec workflows
+    ├── core/               # Canonical types, Adapter interface
+    ├── claude/             # Claude Code adapter
+    ├── kiro/               # AWS Kiro CLI adapter
+    ├── cursor/             # Cursor IDE adapter
+    ├── copilot/            # GitHub Copilot adapter
+    ├── cline/              # Cline adapter
+    └── amazonq/            # Amazon Q Developer adapter
 ```
 
 ## Related Projects
