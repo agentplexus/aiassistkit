@@ -7,6 +7,31 @@
   "maintainers": ["plexusone"],
   "releases": [
     {
+      "version": "v0.14.0",
+      "date": "2026-06-27",
+      "highlights": [
+        {"description": "New `capabilities` package for composable validation and QA building blocks"},
+        {"description": "Capabilities can be converted to both Skills (human-guided) and ValidationArea Checks (autonomous)"},
+        {"description": "Go-specific capabilities for linting, testing, building, and formatting"}
+      ],
+      "added": [
+        {"description": "`capabilities/core` package with canonical `Capability` type", "commit": "2ee284b"},
+        {"description": "`capabilities/core.Capability.ToSkill()` for converting to Skills", "commit": "2ee284b"},
+        {"description": "`capabilities/core.Capability.ToCheck()` for converting to ValidationArea Checks", "commit": "2ee284b"},
+        {"description": "`capabilities/core.CapabilitySet` for grouping related capabilities", "commit": "2ee284b"},
+        {"description": "`capabilities/core.CapabilitySet.ToValidationArea()` for creating QA validation areas", "commit": "2ee284b"},
+        {"description": "`capabilities/go.GolangciLint()` with error handling priority guide and common fixes", "commit": "2ee284b"},
+        {"description": "`capabilities/go.GoTest()`, `GoTestCoverage()`, `GoTestRace()` for testing", "commit": "2ee284b"},
+        {"description": "`capabilities/go.GoBuild()`, `GoModTidy()`, `GoVet()`, `GoFmt()` for build/format", "commit": "2ee284b"},
+        {"description": "`capabilities/go.QACapabilities()` returns all Go QA checks as a CapabilitySet", "commit": "2ee284b"},
+        {"description": "`capabilities/go.LintCapabilities()`, `TestCapabilities()`, `BuildCapabilities()` for grouped access", "commit": "2ee284b"},
+        {"description": "`capabilities/go.QAValidationInstructions()` returns instructions for Go QA agent", "commit": "2ee284b"}
+      ],
+      "documentation": [
+        {"description": "Package documentation in `capabilities/doc.go` explaining composable architecture", "commit": "2ee284b"}
+      ]
+    },
+    {
       "version": "v0.13.0",
       "date": "2026-06-20",
       "highlights": [
