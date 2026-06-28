@@ -22,6 +22,7 @@ import (
 
 	"github.com/plexusone/assistantkit/agents"
 	"github.com/plexusone/assistantkit/commands"
+	"github.com/plexusone/assistantkit/loops"
 	"github.com/plexusone/assistantkit/plugins"
 	powercore "github.com/plexusone/assistantkit/powers/core"
 	"github.com/plexusone/assistantkit/powers/kiro"
@@ -38,6 +39,9 @@ type Result struct {
 
 	// AgentCount is the number of agents loaded.
 	AgentCount int
+
+	// LoopCount is the number of loops loaded.
+	LoopCount int
 
 	// GeneratedDirs maps platform names to their output directories.
 	GeneratedDirs map[string]string
@@ -162,6 +166,67 @@ func loadAgents(dir string) ([]*agents.Agent, error) {
 
 	// Use agents.ReadCanonicalDir which supports both .md (multi-agent-spec) and .json files
 	return agents.ReadCanonicalDir(dir)
+}
+
+func loadLoops(dir string) ([]*loops.Loop, error) {
+	if _, err := os.Stat(dir); os.IsNotExist(err) {
+		return nil, nil // Loops are optional
+	}
+
+	return loops.LoadLoopsFromDir(dir)
+}
+
+// enrichAgentsWithLoops adds loop participation instructions to agents.
+// For each loop, it identifies the validator and actor agents and appends
+// loop-specific instructions to their definitions.
+func enrichAgentsWithLoops(agts []*agents.Agent, lps []*loops.Loop) []*agents.Agent {
+	if len(lps) == 0 {
+		return agts
+	}
+
+	// Build agent lookup map
+	agentMap := make(map[string]*agents.Agent)
+	for _, agt := range agts {
+		agentMap[agt.Name] = agt
+	}
+
+	// Track which agents need enrichment
+	enrichments := make(map[string][]string) // agent name -> list of loop instructions
+
+	for _, loop := range lps {
+		// Add validator instructions (for VEAL loops)
+		if loop.Validator != "" {
+			if _, ok := agentMap[loop.Validator]; ok {
+				instr := loops.GenerateLoopInstructions(loop, "validator")
+				enrichments[loop.Validator] = append(enrichments[loop.Validator], instr)
+			}
+		}
+
+		// Add actor instructions
+		if loop.Actor != "" {
+			if _, ok := agentMap[loop.Actor]; ok {
+				instr := loops.GenerateLoopInstructions(loop, "actor")
+				enrichments[loop.Actor] = append(enrichments[loop.Actor], instr)
+			}
+		}
+	}
+
+	// Apply enrichments
+	result := make([]*agents.Agent, len(agts))
+	for i, agt := range agts {
+		if instructions, ok := enrichments[agt.Name]; ok {
+			// Create a copy with enriched instructions
+			enriched := *agt
+			for _, instr := range instructions {
+				enriched.Instructions += instr
+			}
+			result[i] = &enriched
+		} else {
+			result[i] = agt
+		}
+	}
+
+	return result
 }
 
 func generateClaude(dir string, plugin *PluginSpec, cmds []*commands.Command, skls []*skills.Skill, agts []*agents.Agent) error {
@@ -951,6 +1016,9 @@ type GenerateResult struct {
 	// AgentCount is the number of agents loaded.
 	AgentCount int
 
+	// LoopCount is the number of loops loaded.
+	LoopCount int
+
 	// TeamName is the name of the team being deployed.
 	TeamName string
 
@@ -1020,6 +1088,19 @@ func Generate(specsDir, target, outputDir string) (*GenerateResult, error) {
 		return nil, fmt.Errorf("loading agents: %w", err)
 	}
 	result.AgentCount = len(agts)
+
+	// Load loops (REAL/VEAL patterns)
+	loopsDir := filepath.Join(specsDir, "loops")
+	lps, err := loadLoops(loopsDir)
+	if err != nil {
+		return nil, fmt.Errorf("loading loops: %w", err)
+	}
+	result.LoopCount = len(lps)
+
+	// Enrich agents with loop participation instructions
+	if len(lps) > 0 {
+		agts = enrichAgentsWithLoops(agts, lps)
+	}
 
 	// Load deployment
 	deploymentFile := filepath.Join(specsDir, "deployments", target+".json")
