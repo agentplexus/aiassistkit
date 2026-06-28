@@ -61,6 +61,7 @@ AssistantKit is a Go library for managing configuration files across multiple AI
 | **Powers** | Kiro IDE power generation (POWER.md, mcp.json) | ✅ Available |
 | **Generate** | Programmatic plugin and deployment generation | ✅ Available |
 | **Workflows** | Multi-phase spec creation processes | ✅ Available |
+| **Loops** | REAL/VEAL autonomous loop patterns | ✅ Available |
 | **Settings** | Permissions, sandbox, general settings | 🔜 Coming soon |
 | **Rules** | Team rules, coding guidelines | 🔜 Coming soon |
 | **Memory** | CLAUDE.md, .cursorrules, etc. | 🔜 Coming soon |
@@ -585,6 +586,9 @@ assistantkit/
 │   └── genagents/          # Multi-platform agent generator CLI
 ├── generate/               # Plugin generation library
 │   └── generate.go         # Core generation logic
+├── loops/                  # REAL/VEAL loop patterns
+│   ├── core/               # Loop types, LoopSet, generator
+│   └── loops.go            # Public API
 ├── powers/                 # Kiro IDE powers
 │   ├── core/               # Canonical Power type
 │   └── kiro/               # Kiro power adapter
