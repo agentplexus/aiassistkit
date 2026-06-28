@@ -564,6 +564,112 @@ result, err := generate.Teams(generate.TeamsOptions{
 })
 ```
 
+## Loops
+
+The `loops` package provides REAL/VEAL autonomous loop patterns for bounded, self-correcting agent execution.
+
+### Loop Types
+
+| Type | Category | Pattern | Use Case |
+|------|----------|---------|----------|
+| **REAL** | Mission-driven | Read → Eval → Act → Loop | Long-running tasks: roadmaps, migrations, feature implementations |
+| **VEAL** | State-driven | Validate → Eval → Act → Loop | Fix loops: QA validation, lint fixes, doc updates |
+
+### Bounded Execution
+
+Loops run autonomously but are bounded by `max_attempts` and `escalation` policies:
+
+| Field | Default | Description |
+|-------|---------|-------------|
+| `max_attempts` | 3 | Maximum loop iterations before escalation |
+| `escalation` | `human` | What to do when max reached |
+| `success_criteria` | - | Description of what success looks like |
+
+### Escalation Policies
+
+| Policy | Behavior |
+|--------|----------|
+| `human` | Stop and request human intervention |
+| `abort` | Stop and fail the workflow |
+| `continue` | Proceed despite unresolved issues |
+| `fallback` | Invoke a fallback agent |
+
+### Example: VEAL Loop (QA Fix)
+
+Short-lived validation loop - if code can't pass QA in 3 attempts, escalate:
+
+```yaml
+name: qa-fix
+type: VEAL
+description: QA validation and fix loop
+validator: qa           # Read-only validator agent
+actor: code-fixer       # Agent that fixes issues
+max_attempts: 3         # Try 3 times max
+escalation: human       # Ask human if stuck
+checks:
+  - id: build
+    command: go build ./...
+  - id: lint
+    command: golangci-lint run
+  - id: tests
+    command: go test ./...
+```
+
+### Example: REAL Loop (Roadmap)
+
+Long-running mission loop - work through a roadmap over many iterations:
+
+```yaml
+name: roadmap-impl
+type: REAL
+description: Implement quarterly roadmap
+actor: developer
+mission: |
+  Implement all items in Q3 roadmap.
+  Prioritize by business value.
+  Create PRs for each feature.
+max_attempts: 100       # Many iterations allowed
+escalation: human       # Escalate if truly stuck
+success_criteria: |
+  All roadmap items completed or explicitly deferred.
+  Each feature has passing tests and documentation.
+```
+
+### Loop-Aware Agent Generation
+
+When generating agents, loops automatically inject participation instructions:
+
+```go
+import "github.com/plexusone/assistantkit/generate"
+
+result, err := generate.Generate("specs", "local", ".")
+fmt.Printf("Loaded %d loops\n", result.LoopCount)
+// Agents referenced as validator/actor get loop instructions injected
+```
+
+### Working with Loops Programmatically
+
+```go
+import "github.com/plexusone/assistantkit/loops"
+
+// Load loops from specs directory
+loopSet, err := loops.LoadLoopSet("specs/loops")
+
+// Get specific loop
+qaLoop, ok := loopSet.Get("qa-fix")
+
+// Filter by type
+vealLoops := loopSet.VEALLoops()  // All validation loops
+realLoops := loopSet.REALLoops()  // All mission loops
+
+// Generate role-specific instructions
+validatorInstructions := loops.GenerateLoopInstructions(qaLoop, "validator")
+actorInstructions := loops.GenerateLoopInstructions(qaLoop, "actor")
+
+// Generate coordinator instructions for orchestrating multiple loops
+coordInstructions := loops.GenerateCoordinatorInstructions(loopSet.All())
+```
+
 ## Project Structure
 
 ```
