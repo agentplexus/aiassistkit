@@ -5,7 +5,7 @@ go 1.26.0
 require (
 	github.com/google/go-github/v88 v88.0.0
 	github.com/grokify/gogithub v0.13.0
-	github.com/pelletier/go-toml/v2 v2.4.2
+	github.com/pelletier/go-toml/v2 v2.4.3
 	github.com/plexusone/multi-agent-spec v0.9.0
 	github.com/spf13/cobra v1.10.2
 	gopkg.in/yaml.v3 v3.0.1
