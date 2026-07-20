@@ -4,7 +4,7 @@ go 1.26.0
 
 require (
 	github.com/google/go-github/v88 v88.0.0
-	github.com/grokify/gogithub v0.13.0
+	github.com/grokify/gogithub v0.14.0
 	github.com/pelletier/go-toml/v2 v2.4.3
 	github.com/plexusone/multi-agent-spec v0.9.0
 	github.com/spf13/cobra v1.10.2
@@ -25,7 +25,7 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/quicktemplate v1.8.0 // indirect
 	go.yaml.in/yaml/v4 v4.0.0-rc.6 // indirect
-	golang.org/x/exp v0.0.0-20260611194520-c48552f49976 // indirect
+	golang.org/x/exp v0.0.0-20260718201538-764159d718ef // indirect
 	golang.org/x/oauth2 v0.36.0 // indirect
-	golang.org/x/text v0.38.0 // indirect
+	golang.org/x/text v0.40.0 // indirect
 )
