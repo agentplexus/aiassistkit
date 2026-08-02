@@ -187,8 +187,8 @@ func (p *Publisher) Publish(ctx context.Context, opts core.PublishOptions) (*cor
 	}
 
 	return &core.PublishResult{
-		PRURL:      pr.GetHTMLURL(),
-		PRNumber:   pr.GetNumber(),
+		PRURL:      pr.HTMLURL,
+		PRNumber:   pr.Number,
 		Branch:     branch,
 		ForkURL:    fmt.Sprintf("https://github.com/%s/%s", forkOwner, forkRepo),
 		Status:     status,

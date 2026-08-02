@@ -5,21 +5,21 @@ package github
 import (
 	"context"
 
-	"github.com/google/go-github/v88/github"
-	"github.com/grokify/gogithub/auth"
+	"github.com/grokify/gogithub"
+	"github.com/grokify/gogithub/clientv1"
 	"github.com/grokify/gogithub/pr"
 	"github.com/grokify/gogithub/repo"
 )
 
 // Client wraps the GitHub API client with marketplace-specific operations.
 type Client struct {
-	gh     *github.Client
+	gh     clientv1.Client
 	dryRun bool
 }
 
 // NewClient creates a new GitHub client with the given token.
 func NewClient(token string) (*Client, error) {
-	gh, err := auth.NewGitHubClient(context.Background(), token)
+	gh, err := clientv1.NewClient(context.Background(), token)
 	if err != nil {
 		return nil, err
 	}
@@ -33,7 +33,11 @@ func (c *Client) SetDryRun(dryRun bool) {
 
 // GetAuthenticatedUser returns the authenticated user's login.
 func (c *Client) GetAuthenticatedUser(ctx context.Context) (string, error) {
-	return auth.GetAuthenticatedUser(ctx, c.gh)
+	user, err := c.gh.GetAuthenticatedUser(ctx)
+	if err != nil {
+		return "", err
+	}
+	return user.Login, nil
 }
 
 // EnsureFork ensures a fork exists for the given repository.
@@ -75,12 +79,12 @@ func (c *Client) CreateCommit(ctx context.Context, owner, repoName, branch, mess
 }
 
 // CreatePR creates a pull request.
-func (c *Client) CreatePR(ctx context.Context, upstreamOwner, upstreamRepo, forkOwner, branch, baseBranch, title, body string) (*github.PullRequest, error) {
+func (c *Client) CreatePR(ctx context.Context, upstreamOwner, upstreamRepo, forkOwner, branch, baseBranch, title, body string) (*gogithub.PullRequest, error) {
 	if c.dryRun {
-		return &github.PullRequest{
-			HTMLURL: github.Ptr("https://github.com/" + upstreamOwner + "/" + upstreamRepo + "/pull/0"),
-			Number:  github.Ptr(0),
-			State:   github.Ptr("dry-run"),
+		return &gogithub.PullRequest{
+			HTMLURL: "https://github.com/" + upstreamOwner + "/" + upstreamRepo + "/pull/0",
+			Number:  0,
+			State:   "dry-run",
 		}, nil
 	}
 	return pr.CreatePR(ctx, c.gh, upstreamOwner, upstreamRepo, forkOwner, branch, baseBranch, title, body)
