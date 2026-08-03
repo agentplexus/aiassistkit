@@ -45,6 +45,33 @@ Copy your plugin to the Codex plugins directory:
 cp -r my-plugin ~/.codex/plugins/
 ```
 
+## Hooks
+
+AssistantKit includes a Codex `SessionStart` hook command that reads Codex hook
+JSON from stdin and injects commit-message guidance with the active model:
+
+```bash
+assistantkit codex hooks generated-with
+```
+
+Add it to `~/.codex/config.toml`:
+
+```toml
+commit_attribution = "Co-authored-by: OpenAI Codex <codex@openai.com>"
+
+[[hooks.SessionStart]]
+matcher = "startup|resume|clear|compact"
+
+[[hooks.SessionStart.hooks]]
+type = "command"
+command = "/Users/johnwang/go/bin/assistantkit codex hooks generated-with"
+timeout = 10
+statusMessage = "Loading Codex commit attribution context"
+```
+
+The hook emits a `Generated-with: OpenAI Codex <model>` instruction using the
+`model` field from Codex hook input.
+
 ## Available Tools
 
 | Tool | Description |
