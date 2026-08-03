@@ -35,7 +35,7 @@ AssistantKit is a Go library for managing configuration files across multiple AI
 | Cursor IDE | ✅ | ✅ | — | — | — | — | — |
 | Windsurf (Codeium) | ✅ | ✅ | — | — | — | — | — |
 | VS Code / GitHub Copilot | ✅ | — | — | — | — | — | — |
-| OpenAI Codex CLI | ✅ | — | — | — | ✅ | ✅ | ✅ |
+| OpenAI Codex CLI | ✅ | ✅ | — | — | ✅ | ✅ | ✅ |
 | Cline | ✅ | — | — | — | — | — | — |
 | Roo Code | ✅ | — | — | — | — | — | — |
 | AWS Kiro CLI | ✅ | — | — | — | — | ✅ | — |
@@ -495,6 +495,16 @@ func main() {
 
 - **Command hooks**: Execute shell commands
 - **Prompt hooks**: Run AI prompts (Claude-only)
+
+### Codex `SessionStart` Hook
+
+Codex hooks don't go through the generic adapter/`Convert` framework above — Codex CLI drives a `SessionStart` hook that runs a command and feeds its output back as developer context. AssistantKit ships one for commit attribution:
+
+```bash
+assistantkit codex hooks generated-with
+```
+
+It reads Codex `SessionStart` hook JSON from stdin and emits a `Generated-with: OpenAI Codex <model>` trailer instruction using the active model. See [OpenAI Codex](docs/assistants/codex.md) for the `~/.codex/config.toml` wiring.
 
 ## Teams
 

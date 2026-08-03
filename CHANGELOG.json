@@ -7,6 +7,30 @@
   "maintainers": ["plexusone"],
   "releases": [
     {
+      "version": "v0.15.0",
+      "date": "2026-08-02",
+      "highlights": [
+        {"description": "New Codex `SessionStart` hook (`assistantkit codex hooks generated-with`) that injects `Generated-with` commit-trailer guidance with the active model", "commit": "18987eb"},
+        {"description": "`publish/github.Client` migrated off go-github onto `gogithub/clientv1.Client`; `github.com/google/go-github` is now only a transitive dependency", "commit": "e739f38"}
+      ],
+      "added": [
+        {"description": "`hooks/codex` package with `RunGeneratedWith()`, `GeneratedWithTrailer()`, `GeneratedWithContext()`, `NewGeneratedWithOutput()`", "commit": "18987eb"},
+        {"description": "`assistantkit codex hooks generated-with` CLI command reading Codex hook JSON from stdin", "commit": "18987eb"}
+      ],
+      "changed": [
+        {"description": "`publish/github.Client` now wraps `gogithub/clientv1.Client` instead of a raw `*github.Client`; `CreatePR()` returns `*gogithub.PullRequest` instead of `*github.PullRequest`", "commit": "e739f38"}
+      ],
+      "documentation": [
+        {"description": "Documented the Codex `SessionStart` hook setup in `docs/assistants/codex.md`, including the `~/.codex/config.toml` snippet", "commit": "4ad31a4"},
+        {"description": "Updated README shields", "commit": "1c17dae"}
+      ],
+      "dependencies": [
+        {"description": "Upgraded `github.com/grokify/gogithub` from v0.13.0 to v0.17.0 (via an intermediate v0.14.0 dependabot bump)", "commit": "e739f38"},
+        {"description": "Upgraded `github.com/pelletier/go-toml/v2` from v2.4.2 to v2.4.3", "commit": "398571f"},
+        {"description": "Updated `actions/setup-python` from 6 to 7", "commit": "d43ae2b"}
+      ]
+    },
+    {
       "version": "v0.14.0",
       "date": "2026-06-28",
       "highlights": [
