@@ -28,6 +28,15 @@ type Prompter interface {
 type CLIPrompter struct {
 	In  io.Reader
 	Out io.Writer
+
+	// reader buffers In across calls. It must persist for the CLIPrompter's
+	// lifetime: a bufio.Reader constructed fresh per call can read ahead past
+	// the line it returns (e.g. when In is a pipe carrying several answers at
+	// once), and a new reader on the next call would silently drop whatever
+	// was buffered but unread — turning a real answer into a spurious EOF.
+	// Real interactive typing never surfaces this (input arrives one line at
+	// a time), but any scripted or piped driver of a Prompter does.
+	reader *bufio.Reader
 }
 
 // NewCLIPrompter creates a CLIPrompter using stdin/stdout.
@@ -36,6 +45,16 @@ func NewCLIPrompter() *CLIPrompter {
 		In:  os.Stdin,
 		Out: os.Stdout,
 	}
+}
+
+// bufReader returns the persistent buffered reader over In, creating it on
+// first use so a CLIPrompter built as a struct literal (not via
+// NewCLIPrompter) still behaves correctly.
+func (p *CLIPrompter) bufReader() *bufio.Reader {
+	if p.reader == nil {
+		p.reader = bufio.NewReader(p.In)
+	}
+	return p.reader
 }
 
 func (p *CLIPrompter) Info(message string) {
@@ -53,8 +72,7 @@ func (p *CLIPrompter) Error(message string) {
 func (p *CLIPrompter) Confirm(message string) (bool, error) {
 	fmt.Fprintf(p.Out, "\n%s [y/N]: ", message)
 
-	reader := bufio.NewReader(p.In)
-	input, err := reader.ReadString('\n')
+	input, err := p.bufReader().ReadString('\n')
 	if err != nil {
 		return false, err
 	}
@@ -71,8 +89,7 @@ func (p *CLIPrompter) Choose(message string, options []string) (int, error) {
 	fmt.Fprintf(p.Out, "  0) Cancel\n")
 	fmt.Fprintf(p.Out, "Choice: ")
 
-	reader := bufio.NewReader(p.In)
-	input, err := reader.ReadString('\n')
+	input, err := p.bufReader().ReadString('\n')
 	if err != nil {
 		return -1, err
 	}
